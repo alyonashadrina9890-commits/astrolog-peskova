@@ -1,180 +1,1040 @@
- <!DOCTYPE html>
+<!DOCTYPE html>
 <html lang="ru">
 <head>
     <meta charset="UTF-8">
 
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport"
+          content="width=device-width, initial-scale=1.0">
 
     <title>Алёна Пескова — практикующий астролог</title>
 
-    <meta
-        name="description"
-        content="Алёна Пескова — практикующий астролог. Ведическая астрология как инструмент самопознания, понимания своих сильных сторон, талантов и жизненных задач."
-    >
+    <meta name="description"
+          content="Алёна Пескова — практикующий астролог. Ведическая астрология как инструмент самопознания, понимания своих сильных сторон, талантов и жизненных задач.">
 
     <meta name="theme-color" content="#EEF5FC">
 
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
 
-    <link
-        href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@300;400;500;600&display=swap"
-        rel="stylesheet"
-    >
+    <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap"
+          rel="stylesheet">
 
-    <link rel="stylesheet" href="style.css">
+    <style>
+
+        /* =========================
+           ОСНОВНЫЕ НАСТРОЙКИ
+        ========================= */
+
+        :root {
+            --bg: #EEF5FC;
+            --white: #FFFFFF;
+            --blue: #2F5E90;
+            --text: #2F5E90;
+            --muted: #4E6583;
+            --line: #B9CEE6;
+            --soft: #E4EFF9;
+            --dark: #244A72;
+
+            --serif: "Cormorant Garamond", serif;
+            --sans: "Montserrat", sans-serif;
+        }
+
+        * {
+            box-sizing: border-box;
+            margin: 0;
+            padding: 0;
+        }
+
+        html {
+            scroll-behavior: smooth;
+        }
+
+        body {
+            background: var(--bg);
+            color: var(--text);
+            font-family: var(--sans);
+            line-height: 1.7;
+            overflow-x: hidden;
+        }
+
+        a {
+            color: inherit;
+            text-decoration: none;
+        }
+
+        img {
+            max-width: 100%;
+            display: block;
+        }
+
+        button,
+        input,
+        textarea,
+        select {
+            font-family: inherit;
+        }
+
+        .container {
+            width: min(1180px, calc(100% - 40px));
+            margin: 0 auto;
+        }
+
+        /* =========================
+           ДЕКОР
+        ========================= */
+
+        .decor-circle {
+            position: absolute;
+            width: 320px;
+            height: 320px;
+            border: 1px solid rgba(47, 94, 144, 0.10);
+            border-radius: 50%;
+            pointer-events: none;
+        }
+
+        .decor-circle.small {
+            width: 180px;
+            height: 180px;
+        }
+
+        .dot {
+            width: 5px;
+            height: 5px;
+            border-radius: 50%;
+            background: rgba(47, 94, 144, 0.25);
+            position: absolute;
+        }
+
+        /* =========================
+           HEADER
+        ========================= */
+
+        header {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            z-index: 100;
+            background: rgba(238, 245, 252, 0.88);
+            backdrop-filter: blur(14px);
+            border-bottom: 1px solid rgba(185, 206, 230, 0.5);
+        }
+
+        .header-inner {
+            min-height: 76px;
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            gap: 30px;
+        }
+
+        .logo {
+            font-family: var(--serif);
+            font-size: 28px;
+            font-weight: 600;
+            letter-spacing: 0.02em;
+        }
+
+        nav {
+            display: flex;
+            align-items: center;
+            gap: 28px;
+            font-size: 12px;
+            letter-spacing: 0.04em;
+        }
+
+        nav a {
+            transition: opacity .25s ease;
+        }
+
+        nav a:hover {
+            opacity: .55;
+        }
+
+        .header-button {
+            background: var(--blue);
+            color: white;
+            padding: 11px 20px;
+            border-radius: 100px;
+            font-size: 12px;
+            transition: transform .25s ease, background .25s ease;
+        }
+
+        .header-button:hover {
+            transform: translateY(-2px);
+            background: var(--dark);
+        }
+
+        /* =========================HERO
+        ========================= */
+
+        .hero {
+            min-height: 100vh;
+            padding: 130px 0 80px;
+            position: relative;
+            display: flex;
+            align-items: center;
+            overflow: hidden;
+        }
+
+        .hero-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+            align-items: center;
+        }
+
+        .hero-photo {
+            position: relative;
+        }
+
+        .hero-photo img {
+            width: 100%;
+            height: min(720px, 75vh);
+            object-fit: cover;
+            object-position: center;
+            border-radius: 2px;
+        }
+
+        .photo-caption {
+            position: absolute;
+            bottom: 22px;
+            left: 22px;
+            padding: 9px 15px;
+            background: rgba(255,255,255,.88);
+            backdrop-filter: blur(10px);
+            font-size: 10px;
+            letter-spacing: .1em;
+            text-transform: uppercase;
+        }
+
+        .hero-content {
+            position: relative;
+        }
+
+        .eyebrow {
+            text-transform: uppercase;
+            letter-spacing: .18em;
+            font-size: 11px;
+            color: var(--muted);
+            margin-bottom: 20px;
+        }
+
+        h1,
+        h2,
+        h3 {
+            font-family: var(--serif);
+            font-weight: 500;
+            line-height: 1.05;
+        }
+
+        h1 {
+            font-size: clamp(52px, 6vw, 82px);
+            margin-bottom: 28px;
+        }
+
+        .hero-text {
+            font-size: 17px;
+            color: var(--muted);
+            max-width: 560px;
+            margin-bottom: 36px;
+        }
+
+        .button {
+            display: inline-flex;
+            align-items: center;
+            justify-content: center;
+            gap: 10px;
+            background: var(--blue);
+            color: white;
+            border: none;
+            padding: 16px 28px;
+            border-radius: 100px;
+            cursor: pointer;
+            font-size: 13px;
+            transition: transform .25s ease, background .25s ease;
+        }
+
+        .button:hover {
+            transform: translateY(-3px);
+            background: var(--dark);
+        }
+
+        .button.secondary {
+            background: transparent;
+            color: var(--blue);
+            border: 1px solid var(--line);
+        }
+
+        .button.secondary:hover {
+            background: white;
+        }
+
+        .hero-note {
+            margin-top: 25px;
+            font-family: var(--serif);
+            font-size: 20px;
+            color: var(--blue);
+        }
+
+        /* =========================
+           SECTIONS
+        ========================= */
+
+        section {
+            padding: 120px 0;
+            position: relative;
+        }
+
+        .section-head {
+            max-width: 720px;
+            margin-bottom: 60px;
+        }
+
+        .section-number {
+            font-family: var(--serif);
+            font-size: 18px;
+            margin-bottom: 12px;
+        }
+
+        h2 {
+            font-size: clamp(44px, 5vw, 68px);
+            margin-bottom: 22px;
+        }
+
+        .section-intro {
+            color: var(--muted);
+            font-size: 16px;
+            max-width: 650px;
+        }
+
+        /* =========================
+           ABOUT
+        ========================= */
+
+        .about {
+            background: white;
+        }
+
+        .about-grid {
+            display: grid;
+            grid-template-columns: .7fr 1.3fr;
+            gap: 90px;
+            align-items: start;
+        }
+
+        .about-label {
+            font-family: var(--serif);
+            font-size: 32px;
+        }
+
+        .about-text {
+            font-size: 17px;
+            color: var(--muted);
+        }
+
+        .about-text p {
+            margin-bottom: 25px;
+        }
+
+        .quote {
+            margin-top: 35px;
+            padding: 25px 0 25px 28px;
+            border-left: 2px solid var(--line);
+            font-family: var(--serif);
+            font-size: 28px;line-height: 1.25;
+            color: var(--blue);
+        }
+
+        /* =========================
+           HOW IT WORKS
+        ========================= */
+
+        .steps {
+            display: grid;
+            grid-template-columns: repeat(4, 1fr);
+            border-top: 1px solid var(--line);
+        }
+
+        .step {
+            padding: 35px 25px 20px 0;
+            border-right: 1px solid var(--line);
+        }
+
+        .step:not(:first-child) {
+            padding-left: 25px;
+        }
+
+        .step:last-child {
+            border-right: none;
+        }
+
+        .step-number {
+            font-family: var(--serif);
+            font-size: 38px;
+            margin-bottom: 22px;
+        }
+
+        .step h3 {
+            font-size: 28px;
+            margin-bottom: 15px;
+        }
+
+        .step p {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        /* =========================
+           SERVICES
+        ========================= */
+
+        .services {
+            background: white;
+        }
+
+        .services-grid {
+            display: grid;
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px;
+        }
+
+        .service-card {
+            border: 1px solid var(--line);
+            padding: 38px 30px;
+            min-height: 360px;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            transition: transform .3s ease, box-shadow .3s ease;
+            background: white;
+        }
+
+        .service-card:hover {
+            transform: translateY(-6px);
+            box-shadow: 0 20px 50px rgba(47,94,144,.08);
+        }
+
+        .service-number {
+            font-family: var(--serif);
+            font-size: 22px;
+        }
+
+        .service-card h3 {
+            font-size: 36px;
+            margin: 25px 0 15px;
+        }
+
+        .service-description {
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .price {
+            font-family: var(--serif);
+            font-size: 34px;
+            margin-top: 25px;
+        }
+
+        /* =========================
+           WHAT CLIENT GETS
+        ========================= */
+
+        .gets-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 90px;
+            align-items: center;
+        }
+
+        .paper {
+            background: white;
+            width: min(430px, 100%);
+            aspect-ratio: .72;
+            margin: 0 auto;
+            padding: 45px 38px;
+            box-shadow: 0 25px 70px rgba(47,94,144,.10);
+            transform: rotate(-2deg);
+            position: relative;
+        }
+
+        .paper:before {
+            content: "";
+            position: absolute;
+            inset: 18px;
+            border: 1px solid var(--line);
+        }
+
+        .paper-content {
+            position: relative;
+            z-index: 2;
+            text-align: center;
+            padding-top: 70px;
+        }
+
+        .paper-small {
+            font-size: 10px;
+            text-transform: uppercase;
+            letter-spacing: .15em;
+            color: var(--muted);
+        }
+
+        .paper-title {
+            font-family: var(--serif);
+            font-size: 46px;
+            margin-top: 20px;
+        }
+
+        .check-list {
+            list-style: none;
+        }
+
+        .check-list li {
+            padding: 16px 0;
+            border-bottom: 1px solid var(--line);
+            font-size: 15px;
+        }
+
+        .check-list li:before {
+            content: "✓";
+            margin-right: 12px;
+            color: var(--blue);
+        }
+
+        /* =========================
+           PRICE
+        ========================= */
+
+        .price-section {
+            background: var(--blue);
+            color: white;
+            text-align: center;
+        }
+
+        .price-section .section-number,
+        .price-section .section-intro {
+            color: rgba(255,255,255,.7);
+        }
+
+        .price-section h2 {
+            margin-bottom: 5px;
+        }
+
+        .big-price {
+            font-family: var(--serif);
+            font-size: clamp(72px, 10vw, 130px);
+            line-height: 1;
+            margin: 25px 0;
+        }
+
+        .price-description {
+            max-width: 650px;
+            margin: 0 auto 35px;
+            color: rgba(255,255,255,.75);
+            font-size: 14px;
+        }
+
+        .price-section .button {
+            background: white;
+            color: var(--blue);
+        }
+
+        .price-section .button:hover {
+            background: var(--soft);
+        }
+
+        /* =========================
+           WHY
+        ========================= */
+
+        .why {
+            background: white;
+        }
+
+        .why-text {
+            max-width: 850px;
+            font-family: var(--serif);
+            font-size: clamp(32px, 4vw, 54px);
+            line-height: 1.2;
+        }
+
+        /* =========================
+           FAQ
+        ========================= */
+
+        .faq {
+            max-width: 900px;
+        }
+
+        .faq-item {
+            border-top: 1px solid var(--line);
+        }
+
+        .faq-item:last-child {
+            border-bottom: 1px solid var(--line);
+        }
+
+        .faq-question {
+            width: 100%;
+            border: none;
+            background: transparent;
+            color: var(--blue);
+            padding: 25px 0;
+            text-align: left;
+            font-family: var(--serif);
+            font-size: 27px;
+            cursor: pointer;
+            display: flex;
+            justify-content: space-between;
+            align-items: center;
+        }
+
+        .faq-icon {
+            font-family: var(--sans);
+            font-size: 20px;
+            transition: transform .3s ease;
+        }
+
+        .faq-answer {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height .4s ease;
+            color: var(--muted);
+            font-size: 14px;
+        }
+
+        .faq-answer-inner {
+            padding: 0 50px 25px 0;
+        }
+
+        .faq-item.active .faq-icon {
+            transform: rotate(45deg);
+        }
+
+        /* =========================
+           REVIEWS
+        ========================= */
+
+        .reviews {
+            background: white;
+        }
+
+        .reviews-grid {
+            display: grid;
+            grid-template-columns: repeat(2, 1fr);
+            gap: 24px;
+        }
+
+        .review-card {
+            background: var(--bg);
+            border: 1px solid var(--line);
+            padding: 10px;
+            cursor: pointer;
+            transition: transform .3s ease;
+        }
+
+        .review-card:hover {
+            transform: translateY(-5px);
+        }
+
+        .review-card img {
+            width: 100%;
+            height: 500px;
+            object-fit: contain;
+            background: #20232a;
+        }
+
+        /* =========================
+           CONTACTS
+        ========================= */
+
+        .contacts {
+            background: var(--bg);
+        }
+
+        .contacts-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 80px;
+        }
+
+        .contact-links {
+            display: grid;
+            gap: 14px;
+            margin-top: 35px;
+        }
+
+        .contact-link {
+            display: flex;
+            align-items: center;
+            justify-content: space-between;
+            border-bottom: 1px solid var(--line);
+            padding: 18px 0;
+            font-size: 15px;
+        }
+
+        .contact-link span:last-child {
+            font-family: var(--serif);
+            font-size: 25px;
+        }
+
+        /* =========================
+           FORM
+        ========================= */
+
+        .form {
+            background: white;
+            padding: 38px;
+            border: 1px solid var(--line);
+        }
+
+        .form h3 {
+            font-size: 38px;
+            margin-bottom: 25px;
+        }
+
+        .form-group {
+            margin-bottom: 16px;
+        }
+
+        .form label {
+            display: block;
+            font-size: 11px;
+            margin-bottom: 7px;color: var(--muted);
+        }
+
+        .form input,
+        .form textarea,
+        .form select {
+            width: 100%;
+            border: 1px solid var(--line);
+            background: var(--bg);
+            padding: 13px 14px;
+            outline: none;
+            color: var(--blue);
+            font-size: 13px;
+        }
+
+        .form textarea {
+            min-height: 110px;
+            resize: vertical;
+        }
+
+        .form input:focus,
+        .form textarea:focus,
+        .form select:focus {
+            border-color: var(--blue);
+        }
+
+        .form .button {
+            width: 100%;
+            margin-top: 8px;
+        }
+
+        .form-note {
+            font-size: 10px;
+            color: var(--muted);
+            margin-top: 12px;
+            line-height: 1.5;
+        }
+
+        /* =========================
+           FOOTER
+        ========================= */
+
+        footer {
+            background: white;
+            border-top: 1px solid var(--line);
+            padding: 35px 0;
+        }
+
+        .footer-inner {
+            display: flex;
+            justify-content: space-between;
+            gap: 30px;
+            align-items: center;
+            font-size: 11px;
+            color: var(--muted);
+        }
+
+        .footer-brand {
+            font-family: var(--serif);
+            font-size: 25px;
+            color: var(--blue);
+        }
+
+        .footer-links {
+            display: flex;
+            gap: 25px;
+        }
+
+        /* =========================
+           MODAL
+        ========================= */
+
+        .modal {
+            position: fixed;
+            inset: 0;
+            background: rgba(22, 38, 54, .75);
+            z-index: 300;
+            display: none;
+            align-items: center;
+            justify-content: center;
+            padding: 25px;
+        }
+
+        .modal.active {
+            display: flex;
+        }
+
+        .modal-content {
+            max-width: 900px;
+            max-height: 90vh;
+            position: relative;
+        }
+
+        .modal-content img {
+            max-height: 90vh;
+            width: auto;
+            max-width: 90vw;
+            object-fit: contain;
+        }
+
+        .modal-close {
+            position: absolute;
+            top: -45px;
+            right: 0;
+            color: white;
+            background: none;
+            border: none;
+            font-size: 30px;
+            cursor: pointer;
+        }
+
+        /* =========================
+           ANIMATION
+        ========================= */
+
+        .reveal {
+            opacity: 0;
+            transform: translateY(25px);
+            transition: opacity .8s ease, transform .8s ease;
+        }
+
+        .reveal.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        /* =========================
+           MOBILE
+        ========================= */
+
+        @media (max-width: 900px) {
+
+            .container {
+                width: min(100% - 30px, 700px);
+            }
+
+            nav {
+                display: none;
+            }
+
+            .header-inner {
+                min-height: 66px;
+            }
+
+            .hero {
+                padding-top: 105px;
+                min-height: auto;
+            }
+
+            .hero-grid,
+            .about-grid,
+            .gets-grid,
+            .contacts-grid {
+                grid-template-columns: 1fr;
+                gap: 45px;
+            }
+
+            .hero-photo {
+                order: 1;
+            }
+
+            .hero-content {
+                order: 2;
+            }
+
+            .hero-photo img {
+                height: 560px;
+            }
+
+            section {
+                padding: 80px 0;
+            }
+
+            .steps {
+                grid-template-columns: 1fr 1fr;
+            }
+
+            .step {
+                border-bottom: 1px solid var(--line);
+            }
+
+            .services-grid {
+                grid-template-columns: 1fr;
+            }
+
+            .reviews-grid {
+                grid-template-columns: 1fr;
+            }.review-card img {
+                height: auto;
+                max-height: 700px;
+            }
+
+            .footer-inner {
+                flex-direction: column;
+                align-items: flex-start;
+            }
+
+            .footer-links {
+                flex-direction: column;
+                gap: 8px;
+            }
+        }
+
+        @media (max-width: 600px) {
+
+            h1 {
+                font-size: 52px;
+            }
+
+            h2 {
+                font-size: 46px;
+            }
+
+            .hero-photo img {
+                height: 500px;
+            }
+
+            .steps {
+                grid-template-columns: 1fr;
+            }
+
+            .step,
+            .step:not(:first-child) {
+                border-right: none;
+                padding-left: 0;
+            }
+
+            .form {
+                padding: 25px;
+            }
+
+            .paper {
+                width: 90%;
+            }
+
+            .header-button {
+                padding: 9px 15px;
+            }
+        }
+
+    </style>
 </head>
+
 
 <body>
 
-<header class="header">
+<!-- =========================
+     HEADER
+========================= -->
+
+<header>
+
     <div class="container header-inner">
 
         <a href="#" class="logo">
             Алёна Пескова
         </a>
 
-        <nav class="nav">
+        <nav>
             <a href="#about">Обо мне</a>
+            <a href="#work">Как я работаю</a>
             <a href="#services">Услуги</a>
             <a href="#reviews">Отзывы</a>
-            <a href="#faq">Вопросы</a>
+            <a href="#faq">FAQ</a>
         </nav>
 
-        <div class="header-actions">
-
-            <a
-                href="https://t.me/YOUR_TELEGRAM"
-                target="_blank"
-                class="messenger-link"
-            >
-                Telegram
-            </a>
-
-            <a
-                href="https://max.ru/YOUR_MAX"
-                target="_blank"
-                class="messenger-link"
-            >
-                MAX
-            </a>
-
-        </div>
+        <a href="#contacts" class="header-button">
+            Записаться
+        </a>
 
     </div>
+
 </header>
 
 
 <main>
 
+<!-- =========================
+     HERO
+========================= -->
+
 <section class="hero">
+
+    <div class="decor-circle"
+         style="right:-150px; top:180px;"></div>
+
+    <div class="decor-circle small"
+         style="right:20%; top:110px;"></div>
+
+    <div class="dot"
+         style="right:18%; top:240px;"></div>
 
     <div class="container hero-grid">
 
-        <div class="hero-content">
+        <div class="hero-photo reveal">
 
-            <p class="eyebrow">
-                ВЕДИЧЕСКАЯ АСТРОЛОГИЯ
-            </p>
+            <img
+                src="images/alena-main.jpg"
+                alt="Алёна Пескова — практикующий астролог"
+            >
 
-            <h1>
-                Натальная карта —
-                <span>инструмент самопознания</span>
-            </h1>
-
-            <p class="hero-text">
-                Помогаю лучше понять свою природу, увидеть
-                сильные стороны и таланты, разобраться
-                в профессиональной реализации, отношениях
-                и текущем жизненном периоде.
-            </p>
-
-            <div class="hero-buttons">
-
-                <a href="#contact" class="button">
-                    Записаться на разбор
-                </a>
-
-                <a href="#about" class="text-button">
-                    Узнать обо мне →
-                </a>
-
+            <div class="photo-caption">
+                Практикующий астролог
             </div>
 
         </div>
 
 
-        <div class="hero-image-wrapper">
+        <div class="hero-content reveal">
 
-            <div class="decor-circle"></div>
+            <div class="eyebrow">
+                Ведическая астрология
+            </div>
 
-            <img
-                src="images/alena-main.jpg"
-                alt="Алёна Пескова — практикующий астролог"
-                class="hero-image"
-            >
+            <h1>
+                Натальная карта
+                как инструмент
+                самопознания
+            </h1>
 
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="section about" id="about">
-
-    <div class="container about-grid">
-
-        <div class="about-image-wrapper">
-
-            <img
-                src="images/alena-about.jpg"
-                alt="Алёна Пескова"
-                class="about-image"
-            >
-
-        </div>
-
-
-        <div class="about-content">
-
-            <p class="section-label">
-                ЗНАКОМСТВО
+            <p class="hero-text">
+                Помогаю лучше понять свою природу,
+                увидеть сильные стороны и таланты,
+                разобраться в профессиональной реализации,
+                отношениях и текущем жизненном периоде.
             </p>
 
-            <h2>
-                Меня зовут Алёна
-            </h2>
+            <a href="#contacts" class="button">
+                Записаться на разбор
+            </a>
 
-            <p>
-                Я практикующий астролог.
-            </p>
-
-            <p>
-                В своей работе я использую ведическую
-                астрологию как инструмент самопознания —
-                чтобы помочь человеку лучше понять свою
-                природу, увидеть сильные стороны, таланты
-                и возможные точки роста.
-            </p>
-
-            <p>
-                Мы не ищем в карте готовых ответов о том,
-                каким будет ваше будущее.
-            </p>
-
-            <p>
-                Мы смотрим на вас — ваши особенности,
-                отношения, профессиональную реализацию,
-                финансовый потенциал и текущий жизненный
-                период, чтобы вы могли лучше понять себяи принимать решения, опираясь на свое
-                истинное я.
-            </p>
-
-            <p class="about-highlight">
+            <div class="hero-note">
                 Натальная карта не решает за вас.
                 Она помогает увидеть больше.
-            </p>
+            </div>
 
         </div>
 
@@ -183,96 +1043,175 @@
 </section>
 
 
-<section class="section how">
+<!-- =========================
+     ABOUT
+========================= -->
+
+<section class="about" id="about">
 
     <div class="container">
 
-        <div class="section-heading">
+        <div class="about-grid reveal">
 
-            <p class="section-label">
-                МОЙ ПОДХОД
-            </p>
+            <div>
+                <div class="section-number">
+                    01
+                </div>
+
+                <div class="about-label">
+                    Знакомство
+                </div>
+            </div>
+
+
+            <div class="about-text">
+
+                <h2>
+                    Меня зовут Алёна
+                </h2>
+
+                <p>
+                    Я практикующий астролог.
+                </p>
+
+                <p>
+                    В своей работе я использую ведическую
+                    астрологию как инструмент самопознания —
+                    чтобы помочь человеку лучше понять свою
+                    природу, увидеть сильные стороны,
+                    таланты и возможные точки роста.
+                </p>
+
+                <p>Мы не ищем в карте готовых ответов
+                    о том, каким будет ваше будущее.
+                </p>
+
+                <p>
+                    Мы смотрим на вас — ваши особенности,
+                    отношения, профессиональную реализацию,
+                    финансовый потенциал и текущий жизненный
+                    период, чтобы вы могли лучше понять себя
+                    и принимать решения, опираясь на свое
+                    истинное я.
+                </p>
+
+                <div class="quote">
+                    Натальная карта не решает за вас.
+                    Она помогает увидеть больше.
+                </div>
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     HOW I WORK
+========================= -->
+
+<section id="work">
+
+    <div class="container">
+
+        <div class="section-head reveal">
+
+            <div class="section-number">
+                02
+            </div>
 
             <h2>
                 Как я работаю
             </h2>
+
+            <p class="section-intro">
+                Разбор строится вокруг вашей конкретной
+                ситуации и тех вопросов, которые важны
+                именно вам.
+            </p>
 
         </div>
 
 
         <div class="steps">
 
-            <article class="step">
+            <div class="step reveal">
 
-                <span class="step-number">
+                <div class="step-number">
                     01
-                </span>
+                </div>
 
                 <h3>
-                    Изучаю вашу карту
+                    Вы отправляете данные
                 </h3>
 
                 <p>
-                    Анализирую данные рождения
-                    и основные показатели натальной карты.
+                    Дату, точное время и город рождения,
+                    а также можете рассказать, какие
+                    вопросы сейчас для вас наиболее важны.
                 </p>
 
-            </article>
+            </div>
 
 
-            <article class="step">
+            <div class="step reveal">
 
-                <span class="step-number">
+                <div class="step-number">
                     02
-                </span>
+                </div>
 
                 <h3>
-                    Смотрю на человека целиком
+                    Я анализирую карту
                 </h3>
 
                 <p>
-                    Рассматриваю личность, таланты,
-                    отношения, деньги и профессиональную
-                    реализацию.
+                    Изучаю основные показатели карты
+                    и связываю их с вашими задачами,
+                    особенностями и текущим периодом.
                 </p>
 
-            </article>
+            </div>
 
 
-            <article class="step">
+            <div class="step reveal">
 
-                <span class="step-number">
+                <div class="step-number">
                     03
-                </span>
+                </div>
 
                 <h3>
-                    Объясняю простым языком
+                    Вы получаете разбор
                 </h3>
 
                 <p>
-                    Без сложной терминологии и попыток
-                    напугать будущим.
+                    Готовый PDF и подробный аудиоразбор
+                    с понятными объяснениями и
+                    практическими рекомендациями.
                 </p>
 
-            </article>
+            </div>
 
 
-            <article class="step">
+            <div class="step reveal">
 
-                <span class="step-number">
+                <div class="step-number">
                     04
-                </span>
+                </div>
 
                 <h3>
-                    Даю практические рекомендации
+                    Остаёмся на связи
                 </h3>
 
                 <p>
-                    Вы получаете ориентиры, которые можно
-                    использовать в реальной жизни.
+                    После получения разбора вы можете
+                    задать дополнительные вопросы
+                    и уточнить непонятные моменты.
                 </p>
 
-            </article>
+            </div>
 
         </div>
 
@@ -281,23 +1220,27 @@
 </section>
 
 
-<section class="section services" id="services">
+<!-- =========================
+     SERVICES
+========================= -->
+
+<section class="services" id="services">
 
     <div class="container">
 
-        <div class="section-heading">
+        <div class="section-head reveal">
 
-            <p class="section-label">
-                УСЛУГИ
-            </p>
+            <div class="section-number">
+                03
+            </div>
 
             <h2>
                 Мои услуги
             </h2>
 
-            <p class="section-description">
-                Формат разбора подбирается в зависимости
-                от вашего запроса.
+            <p class="section-intro">
+                Каждый формат можно адаптировать
+                под ваш запрос.
             </p>
 
         </div>
@@ -305,99 +1248,87 @@
 
         <div class="services-grid">
 
+            <article class="service-card reveal">
 
-            <article class="service-card">
+                <div>
 
-                <p class="service-number">
-                    01
-                </p>
+                    <div class="service-number">
+                        01
+                    </div>
 
-                <h3>
-                    Полный разбор натальной карты
-                </h3>
+                    <h3>
+                        Натальная карта
+                    </h3>
 
-                <p>
-                    Подробный анализ личности, талантов,
-                    профессиональной реализации, финансов,
-                    отношений и текущего периода.
-                </p>
+                    <p class="service-description">
+                        Полный разбор основных сфер жизни:
+                        личность, таланты, отношения,
+                        деньги, профессия, сильные стороныи текущий жизненный период.
+                    </p>
 
-                <div class="service-bottom">
+                </div>
 
-                    <strong>
-                        4 900 ₽
-                    </strong>
-
-                    <a href="#contact">
-                        Записаться →
-                    </a>
-
+                <div class="price">
+                    4 900 ₽
                 </div>
 
             </article>
 
 
-            <article class="service-card">
+            <article class="service-card reveal">
 
-                <p class="service-number">
-                    02
-                </p>
+                <div>
 
-                <h3>
-                    Анализ отдельной сферы
-                </h3>
+                    <div class="service-number">
+                        02
+                    </div>
 
-                <p>
-                    Разбор конкретного вопроса:
-                    отношения, дети, недвижимость,
-                    переезд, отношения с родителями
-                    и другие темы.
-                </p>
+                    <h3>
+                        Анализ сферы
+                    </h3>
 
-                <div class="service-bottom">
+                    <p class="service-description">
+                        Дополнительный разбор отдельной
+                        сферы: отношения, дети, деньги,
+                        профессиональная реализация,
+                        родители, переезд и другие запросы.
+                    </p>
 
-                    <strong>
-                        По запросу
-                    </strong>
+                </div>
 
-                    <a href="#contact">
-                        Узнать подробнее →</a>
-
+                <div class="price">
+                    По запросу
                 </div>
 
             </article>
 
 
-            <article class="service-card">
+            <article class="service-card reveal">
 
-                <p class="service-number">
-                    03
-                </p>
+                <div>
 
-                <h3>
-                    Анализ текущего периода
-                </h3>
+                    <div class="service-number">
+                        03
+                    </div>
 
-                <p>
-                    Помогает понять особенности текущего
-                    жизненного периода и на какие темы
-                    стоит обратить внимание сейчас.
-                </p>
+                    <h3>
+                        Текущий период
+                    </h3>
 
-                <div class="service-bottom">
-
-                    <strong>
-                        По запросу
-                    </strong>
-
-                    <a href="#contact">
-                        Узнать подробнее →
-                    </a>
+                    <p class="service-description">
+                        Анализ текущего периода и
+                        ближайших тенденций, чтобы
+                        лучше понимать происходящие
+                        изменения и возможности.
+                    </p>
 
                 </div>
 
-            </article>
+                <div class="price">
+                    По запросу
+                </div>
 
+            </article>
 
         </div>
 
@@ -406,276 +1337,142 @@
 </section>
 
 
-<section class="section process">
+<!-- =========================
+     WHAT CLIENT GETS
+========================= -->
 
-    <div class="container">
+<section>
 
-        <div class="section-heading">
+    <div class="container gets-grid">
 
-            <p class="section-label">
-                ПРОЦЕСС
-            </p>
-
-            <h2>
-                Как проходит работа
-            </h2>
-
-        </div>
-
-
-        <div class="process-list">
-
-            <div class="process-item">
-
-                <span>
-                    01
-                </span>
-
-                <div>
-
-                    <h3>
-                        Вы оставляете заявку
-                    </h3>
-
-                    <p>
-                        Пишете мне в Telegram или MAX
-                        и рассказываете о своем запросе.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="process-item">
-
-                <span>
-                    02
-                </span>
-
-                <div>
-
-                    <h3>
-                        Передаёте данные рождения
-                    </h3>
-
-                    <p>
-                        Дату, точное время и город рождения.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="process-item">
-
-                <span>
-                    03
-                </span>
-
-                <div>
-
-                    <h3>
-                        Я анализирую карту
-                    </h3>
-
-                    <p>
-                        Провожу индивидуальный подробный разбор.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="process-item">
-
-                <span>
-                    04
-                </span>
-
-                <div>
-
-                    <h3>
-                        Вы получаете материалы
-                    </h3>
-
-                    <p>
-                        PDF с разбором и аудиокомментарий
-                        с основными выводами.
-                    </p>
-
-                </div>
-
-            </div>
-
-        </div>
-
-    </div>
-
-</section>
-
-
-<section class="section result">
-
-    <div class="container result-grid">
-
-        <div class="result-visual">
+        <div class="reveal">
 
             <div class="paper">
 
-                <div class="paper-small">
-                    НАТАЛЬНАЯ КАРТА
+                <div class="paper-content">
+
+                    <div class="paper-small">
+                        Индивидуальный разбор
+                    </div>
+
+                    <div class="paper-title">
+                        Ваша
+                        натальная
+                        карта
+                    </div>
+
+                    <div class="paper-small"
+                         style="margin-top:30px;">
+                        PDF + аудио
+                    </div>
+
                 </div>
-
-                <div class="paper-title">
-                    Ваш индивидуальный
-                    разбор
-                </div>
-
-                <div class="paper-lines"></div>
-
-                <div class="paper-circle"></div>
 
             </div>
 
         </div>
 
 
-        <div class="result-content">
+        <div class="reveal">
 
-            <p class="section-label">
-                РЕЗУЛЬТАТ
-            </p>
+            <div class="section-number">
+                04
+            </div>
 
             <h2>
-                Что вы получаете
+                Что вы получите
             </h2>
 
             <ul class="check-list">
 
                 <li>
-                    PDF с индивидуальным разбором
+                    PDF-разбор на 12–15 страниц
                 </li>
 
                 <li>
-                    Аудиоразбор
+                    Аудиоразбор продолжительностью
+                    20–30 минут
                 </li>
 
                 <li>
-                    Анализ основных сфер жизни
+                    Понятные объяснения без сложной
+                    астрологической терминологии
                 </li>
 
                 <li>
-                    Индивидуальные рекомендации
+                    Индивидуальные практические
+                    рекомендации
                 </li>
 
                 <li>
-                    Возможность задать вопросы после получения
+                    Возможность задать вопросы
+                    после получения разбора
                 </li>
 
             </ul>
 
         </div>
 
-    </div></section>
+    </div>
+
+</section>
 
 
-<section class="section price">
+<!-- =========================
+     PRICE
+========================= -->
 
-    <div class="container">
+<section class="price-section">
 
-        <div class="price-card">
+    <div class="container reveal">
 
-            <p class="section-label">
-                ПОЛНЫЙ РАЗБОР
-            </p>
-
-            <h2>
-                Натальная карта
-            </h2>
-
-            <div class="price-value">
-                4 900 ₽
-            </div>
-
-            <p>
-                Дополнительный анализ отдельных сфер
-                выполняется по запросу и оплачивается отдельно.
-            </p>
-
-            <a href="#contact" class="button">
-                Записаться
-            </a>
-
+        <div class="section-number">
+            05
         </div>
+
+        <h2>
+            Полный разбор
+        </h2>
+
+        <div class="big-price">
+            4 900 ₽
+        </div>
+
+        <p class="price-description">
+            Дополнительный анализ отдельных сфер
+            — дети, недвижимость, переезд, отношения
+            с родителями и другие запросы —
+            выполняется по запросу и оплачивается отдельно.
+        </p>
+
+        <a href="#contacts" class="button">
+            Записаться
+        </a>
 
     </div>
 
 </section>
 
 
-<section class="section philosophy">
+<!-- =========================
+     WHY
+========================= -->
 
-    <div class="container philosophy-inner">
+<section class="why"><div class="container reveal">
 
-        <p class="section-label">
-            МОЙ ВЗГЛЯД
-        </p>
+        <div class="section-number">
+            06
+        </div>
 
         <h2>
-            Натальная карта не меняет жизнь сама по себе.
+            Почему такой подход?
         </h2>
 
-        <p>
+        <div class="why-text">
+            Натальная карта не меняет жизнь сама по себе.
             Но она помогает лучше понять свои особенности,
             увидеть сильные стороны и принимать решения
             более осознанно.
-        </p>
-
-    </div>
-
-</section>
-
-
-<section class="section reviews" id="reviews">
-
-    <div class="container">
-
-        <div class="section-heading">
-
-            <p class="section-label">
-                ОТЗЫВЫ
-            </p>
-
-            <h2>
-                Что говорят клиенты
-            </h2>
-
-        </div>
-
-
-        <div class="reviews-grid">
-
-            <img
-                src="images/review-1.jpg"
-                alt="Отзыв клиента"
-                class="review-image"
-            >
-
-            <img
-                src="images/review-2.jpg"
-                alt="Отзыв клиента"
-                class="review-image"
-            >
-
-            <img
-                src="images/review-3.jpg"
-                alt="Отзыв клиента"
-                class="review-image"
-            >
-
         </div>
 
     </div>
@@ -683,15 +1480,19 @@
 </section>
 
 
-<section class="section faq" id="faq">
+<!-- =========================
+     FAQ
+========================= -->
+
+<section id="faq">
 
     <div class="container">
 
-        <div class="section-heading">
+        <div class="section-head reveal">
 
-            <p class="section-label">
-                FAQ
-            </p>
+            <div class="section-number">
+                07
+            </div>
 
             <h2>
                 Частые вопросы
@@ -700,101 +1501,106 @@
         </div>
 
 
-        <div class="faq-list">
+        <div class="faq">
 
-
-            <div class="faq-item">
+            <div class="faq-item reveal">
 
                 <button class="faq-question">
                     Нужно ли знать точное время рождения?
-                    <span>+</span>
+                    <span class="faq-icon">+</span>
                 </button>
 
                 <div class="faq-answer">
 
-                    <p>
-                        Точное время рождения желательно,
-                        поскольку оно позволяет провести
-                        более подробный анализ карты.
-                    </p>
+                    <div class="faq-answer-inner">
+                        Желательно знать максимально точное
+                        время рождения. Если время неизвестно
+                        или вызывает сомнения, расскажите об
+                        этом при записи — отдельно обсудим,
+                        что можно сделать в вашей ситуации.
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <div class="faq-item">
-
-                <button class="faq-question">
-                    Что делать, если время рождения неизвестно?
-                    <span>+</span>
-                </button>
-
-                <div class="faq-answer">
-
-                    <p>
-                        Напишите мне об этом заранее.
-                        Мы обсудим возможные варианты работы
-                        с вашим запросом.
-                    </p>
-
-                </div>
-
-            </div>
-
-
-            <div class="faq-item">
+            <div class="faq-item reveal">
 
                 <button class="faq-question">
                     Можно ли заказать разбор в подарок?
-                    <span>+</span>
+                    <span class="faq-icon">+</span>
                 </button>
 
                 <div class="faq-answer">
 
-                    <p>
-                        Да. Напишите мне, и я расскажу,
-                        как оформить разбор в подарок.
-                    </p>
+                    <div class="faq-answer-inner">
+                        Да. Можно оформить разбор в подарок.
+                        Детали лучше обсудить при записи.
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <div class="faq-item">
+            <div class="faq-item reveal">
+
+                <button class="faq-question">
+                    Что делать, если время рождения неизвестно?
+                    <span class="faq-icon">+</span>
+                </button>
+
+                <div class="faq-answer">
+
+                    <div class="faq-answer-inner">
+                        Напишите об этом перед записью.
+                        В зависимости от ситуации можно
+                        обсудить возможные варианты работы.
+                    </div>
+
+                </div>
+
+            </div>
+
+
+            <div class="faq-item reveal">
 
                 <button class="faq-question">
                     Чем ведическая астрология отличается
                     от западной?
-                    <span>+</span>
+                    <span class="faq-icon">+</span>
                 </button>
 
                 <div class="faq-answer">
 
-                    <p>
-                        Это разные астрологические системы
-                        с собственными подходами к расчётуи интерпретации натальной карты.
-                    </p>
+                    <div class="faq-answer-inner">
+                        Это разные астрологические традиции,
+                        которые используют разные системы
+                        расчётов и подходы к интерпретации
+                        натальной карты. В своей работе я
+                        использую ведическую астрологию.
+                    </div>
 
                 </div>
 
             </div>
 
 
-            <div class="faq-item">
+            <div class="faq-item reveal">
 
                 <button class="faq-question">
                     Сколько ждать готовый разбор?
-                    <span>+</span>
+                    <span class="faq-icon">+</span>
                 </button>
 
                 <div class="faq-answer">
 
-                    <p>
-                        Срок выполнения определяется после
-                        согласования заявки.
-                    </p>
+                    <div class="faq-answer-inner">
+                        Срок подготовки зависит от текущей
+                        загрузки. Точный срок я сообщаю
+                        при записи.
+                    </div>
 
                 </div>
 
@@ -807,42 +1613,279 @@
 </section>
 
 
-<section class="section contact" id="contact">
+<!-- =========================
+     REVIEWS
+========================= -->
 
-    <div class="container contact-inner">
+<section class="reviews" id="reviews">
 
-        <p class="section-label">
-            ЗАПИСЬ
-        </p>
+    <div class="container">
 
-        <h2>
-            Если вам откликается мой подход —
-            напишите мне
-        </h2>
+        <div class="section-head reveal">
 
-        <p>
-            Расскажите немного о себе и своём запросе.
-            Я отвечу на вопросы и помогу подобрать подходящий формат.
-        </p>
+            <div class="section-number">08
+            </div>
+
+            <h2>
+                Отзывы
+            </h2>
+
+            <p class="section-intro">
+                Несколько отзывов клиентов после
+                разбора натальной карты.
+            </p>
+
+        </div>
 
 
-        <div class="contact-buttons">
+        <div class="reviews-grid">
 
-            <a
-                href="https://t.me/YOUR_TELEGRAM"
-                target="_blank"
-                class="button"
-            >
-                Написать в Telegram
-            </a>
+            <div class="review-card reveal"
+                 onclick="openReview('images/review-1.jpg')">
 
-            <a
-                href="https://max.ru/YOUR_MAX"
-                target="_blank"
-                class="button button-outline"
-            >
-                Написать в MAX
-            </a>
+                <img
+                    src="images/review-1.jpg"
+                    alt="Отзыв клиента"
+                >
+
+            </div>
+
+
+            <div class="review-card reveal"
+                 onclick="openReview('images/review-2.jpg')">
+
+                <img
+                    src="images/review-2.jpg"
+                    alt="Отзыв клиента"
+                >
+
+            </div>
+
+
+            <div class="review-card reveal"
+                 onclick="openReview('images/review-3.jpg')">
+
+                <img
+                    src="images/review-3.jpg"
+                    alt="Отзыв клиента"
+                >
+
+            </div>
+
+
+            <div class="review-card reveal"
+                 onclick="openReview('images/review-4.jpg')">
+
+                <img
+                    src="images/review-4.jpg"
+                    alt="Отзыв клиента"
+                >
+
+            </div>
+
+
+            <div class="review-card reveal"
+                 onclick="openReview('images/review-5.jpg')">
+
+                <img
+                    src="images/review-5.jpg"
+                    alt="Отзыв клиента"
+                >
+
+            </div>
+
+        </div>
+
+    </div>
+
+</section>
+
+
+<!-- =========================
+     CONTACTS
+========================= -->
+
+<section class="contacts" id="contacts">
+
+    <div class="container contacts-grid">
+
+        <div class="reveal">
+
+            <div class="section-number">
+                09
+            </div>
+
+            <h2>
+                Записаться
+            </h2>
+
+            <p class="section-intro">
+                Если хотите узнать больше или записаться
+                на разбор, напишите мне в удобном
+                мессенджере.
+            </p>
+
+
+            <div class="contact-links">
+
+                <!--
+                    ВАЖНО:
+                    Ниже временно стоят ссылки-заглушки.
+
+                    Потом заменим их на настоящие
+                    Telegram и MAX Алёны.
+                -->
+
+                <a
+                    class="contact-link"
+                    href="https://t.me/YOUR_TELEGRAM"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    <span>
+                        Telegram
+                    </span>
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+
+                <a
+                    class="contact-link"
+                    href="https://max.ru/YOUR_MAX"
+                    target="_blank"
+                    rel="noopener"
+                >
+
+                    <span>
+                        MAX
+                    </span>
+
+                    <span>
+                        →
+                    </span>
+
+                </a>
+
+            </div>
+
+        </div>
+
+
+        <div class="form reveal">
+
+            <h3>
+                Оставить заявку
+            </h3>
+
+            <form id="requestForm">
+
+                <div class="form-group">
+
+                    <label>
+                        Ваше имя
+                    </label>
+
+                    <input
+                        type="text"
+                        id="name"
+                        placeholder="Например, Анна"
+                        required
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Telegram или другой мессенджер
+                    </label>
+
+                    <input
+                        type="text"
+                        id="contact"
+                        placeholder="@username или номер телефона"
+                        required>
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Дата рождения
+                    </label>
+
+                    <input
+                        type="date"
+                        id="birthdate"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Время рождения
+                    </label>
+
+                    <input
+                        type="time"
+                        id="birthtime"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Город рождения
+                    </label>
+
+                    <input
+                        type="text"
+                        id="birthcity"
+                        placeholder="Например, Москва"
+                    >
+
+                </div>
+
+
+                <div class="form-group">
+
+                    <label>
+                        Ваш вопрос или комментарий
+                    </label>
+
+                    <textarea
+                        id="comment"
+                        placeholder="Что хотели бы узнать?"
+                    ></textarea>
+
+                </div>
+
+
+                <button
+                    type="submit"
+                    class="button"
+                >
+                    Отправить заявку
+                </button>
+
+
+                <div class="form-note">
+                    Нажимая кнопку, вы соглашаетесь
+                    на обработку персональных данных.
+                </div>
+
+            </form>
 
         </div>
 
@@ -853,19 +1896,23 @@
 </main>
 
 
-<footer class="footer">
+<!-- =========================
+     FOOTER
+========================= -->
+
+<footer>
 
     <div class="container footer-inner">
 
         <div>
 
-            <strong>
+            <div class="footer-brand">
                 Алёна Пескова
-            </strong>
+            </div>
 
-            <p>
+            <div>
                 Практикующий астролог
-            </p>
+            </div>
 
         </div>
 
@@ -877,7 +1924,7 @@
             </a>
 
             <a href="#">
-                Согласие на обработку персональных данных
+                Согласие на обработку данных
             </a>
 
         </div>
@@ -887,7 +1934,238 @@
 </footer>
 
 
-<script src="script.js"></script>
+<!-- =========================
+     REVIEW MODAL
+========================= -->
+
+<div class="modal" id="reviewModal">
+
+    <div class="modal-content">
+
+        <button
+            class="modal-close"
+            onclick="closeReview()"
+        >
+            ×
+        </button>
+
+        <img
+            id="modalImage"
+            src=""
+            alt="Отзыв клиента"
+        >
+
+    </div>
+
+</div>
+
+
+<!-- =========================
+     JAVASCRIPT
+========================= -->
+
+<script>
+
+    /* =========================
+       FAQ
+    ========================= */
+
+    document.querySelectorAll(".faq-question").forEach(button => {
+
+        button.addEventListener("click", () => {
+
+            const item = button.parentElement;
+            const answer = item.querySelector(".faq-answer");
+
+            const isActive = item.classList.contains("active");
+
+            document.querySelectorAll(".faq-item").forEach(other => {
+
+                other.classList.remove("active");
+
+                const otherAnswer =
+                    other.querySelector(".faq-answer");
+
+                otherAnswer.style.maxHeight = null;
+
+            });
+
+            if (!isActive) {
+
+                item.classList.add("active");
+
+                answer.style.maxHeight =
+                    answer.scrollHeight + "px";
+
+            }
+
+        });
+
+    });
+
+
+    /* =========================
+       REVIEW MODAL
+    ========================= */
+
+    function openReview(image) {
+
+        const modal =
+            document.getElementById("reviewModal");
+
+        const modalImage =
+            document.getElementById("modalImage");
+
+        modalImage.src = image;
+
+        modal.classList.add("active");
+
+        document.body.style.overflow = "hidden";
+
+    }
+
+
+    function closeReview() {const modal =
+            document.getElementById("reviewModal");
+
+        modal.classList.remove("active");
+
+        document.body.style.overflow = "";
+
+    }
+
+
+    document
+        .getElementById("reviewModal")
+        .addEventListener("click", function(event) {
+
+            if (event.target === this) {
+                closeReview();
+            }
+
+        });
+
+
+    /* =========================
+       ESC
+    ========================= */
+
+    document.addEventListener("keydown", function(event) {
+
+        if (event.key === "Escape") {
+            closeReview();
+        }
+
+    });
+
+
+    /* =========================
+       ANIMATION
+    ========================= */
+
+    const observer =
+        new IntersectionObserver(
+
+            entries => {
+
+                entries.forEach(entry => {
+
+                    if (entry.isIntersecting) {
+
+                        entry.target.classList.add("visible");
+
+                        observer.unobserve(entry.target);
+
+                    }
+
+                });
+
+            },
+
+            {
+                threshold: 0.12
+            }
+
+        );
+
+
+    document
+        .querySelectorAll(".reveal")
+        .forEach(element => {
+
+            observer.observe(element);
+
+        });
+
+
+    /* =========================
+       FORM
+    ========================= */
+
+    document
+        .getElementById("requestForm")
+        .addEventListener("submit", function(event) {
+
+            event.preventDefault();
+
+            const name =
+                document.getElementById("name").value;
+
+            const contact =
+                document.getElementById("contact").value;
+
+            const birthdate =
+                document.getElementById("birthdate").value;
+
+            const birthtime =
+                document.getElementById("birthtime").value;
+
+            const birthcity =
+                document.getElementById("birthcity").value;
+
+            const comment =
+                document.getElementById("comment").value;
+
+
+            const message =
+                "Здравствуйте! Хочу записаться на разбор натальной карты.%0A%0A" +
+
+                "Имя: " + encodeURIComponent(name) + "%0A" +
+
+                "Контакт: " + encodeURIComponent(contact) + "%0A" +
+
+                "Дата рождения: " +
+                encodeURIComponent(birthdate || "не указана") +
+                "%0A" +
+
+                "Время рождения: " +
+                encodeURIComponent(birthtime || "не указано") +
+                "%0A" +
+
+                "Город рождения: " +
+                encodeURIComponent(birthcity || "не указан") +
+                "%0A%0A" +
+
+                "Комментарий: " +
+                encodeURIComponent(comment || "нет");
+
+
+            /*
+                ВРЕМЕННО:
+                отправляем заявку в Telegram.
+
+                Когда ты дашь мне настоящий Telegram
+                Алёны, заменим YOUR_TELEGRAM.
+            */
+
+            window.open(
+                "https://t.me/YOUR_TELEGRAM?text=" + message,
+                "_blank"
+            );
+
+        });
+
+</script>
 
 </body>
 </html>
