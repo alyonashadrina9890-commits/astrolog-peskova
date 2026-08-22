@@ -739,7 +739,7 @@
       <div class="container hero-grid">
         <div class="hero-photo">
           <!-- Положите фотографию в папку images и назовите alena.jpg -->
-          <img src="/images/alena-main.jpg" alt="Алёна Пескова — практикующий астролог"
+          <img src="/images/alena-main.jpg" onerror="window.__imageFallback(this, 'alena-main.jpg')" alt="Алёна Пескова — практикующий астролог"
                onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/alena-main.jpg';}else{this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#e4edf7,#f8fbff)';}">
         </div>
 
@@ -924,27 +924,27 @@
             -->
 
             <div class="review-card">
-              <img src="/images/review-1.jpg" alt="Отзыв клиента"
+              <img src="/images/review-1.jpg" onerror="window.__imageFallback(this, 'review-1.jpg')" alt="Отзыв клиента"
                    onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-1.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
             </div>
 
             <div class="review-card">
-              <img src="/images/review-2.jpg" alt="Отзыв клиента"
+              <img src="/images/review-2.jpg" onerror="window.__imageFallback(this, 'review-2.jpg')" alt="Отзыв клиента"
                    onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-2.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
             </div>
 
             <div class="review-card">
-              <img src="/images/review-3.jpg" alt="Отзыв клиента"
+              <img src="/images/review-3.jpg" onerror="window.__imageFallback(this, 'review-3.jpg')" alt="Отзыв клиента"
                    onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-3.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
             </div>
 
             <div class="review-card">
-              <img src="/images/review-4.jpg" alt="Отзыв клиента"
+              <img src="/images/review-4.jpg" onerror="window.__imageFallback(this, 'review-4.jpg')" alt="Отзыв клиента"
                    onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-4.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
             </div>
 
             <div class="review-card">
-              <img src="/images/review-5.jpg" alt="Отзыв клиента"
+              <img src="/images/review-5.jpg" onerror="window.__imageFallback(this, 'review-5.jpg')" alt="Отзыв клиента"
                    onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-5.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
             </div>
 
@@ -1081,6 +1081,20 @@
   </div>
 
   <script>
+    // Надёжная загрузка изображений: пробуем путь проекта, корень Vercel и прямой Vercel URL.
+    window.__imageFallback = function (img, fileName) {
+      const candidates = [
+        './images/' + fileName,
+        '/' + fileName,
+        'https://astrolog-peskova.vercel.app/images/' + fileName,
+        'https://astrolog-peskova.vercel.app/' + fileName
+      ];
+      const current = img.dataset.fallbackIndex ? Number(img.dataset.fallbackIndex) : 0;
+      if (current >= candidates.length) return;
+      img.dataset.fallbackIndex = String(current + 1);
+      img.src = candidates[current];
+    };
+
     // Открытие окна выбора мессенджера
     const modal = document.getElementById("contactModal");
     const modalClose = document.getElementById("modalClose");
