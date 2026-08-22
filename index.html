@@ -1,383 +1,1134 @@
 <!DOCTYPE html>
 <html lang="ru">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Алёна Пескова — практикующий астролог</title>
-<meta name="description" content="Алёна Пескова — практикующий астролог. Ведическая астрология как инструмент самопознания.">
-<meta name="theme-color" content="#eef5fc">
-<link rel="preconnect" href="https://fonts.googleapis.com">
-<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-<link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@400;500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
-<style>
-:root{--bg:#eef5fc;--white:#fff;--blue:#2f5e90;--text:#2f5e90;--muted:#4e6583;--line:#b9cee6;--soft:#e4eff9;--dark:#244a72;--serif:"Cormorant Garamond",serif;--sans:"Montserrat",sans-serif}
-*{box-sizing:border-box;margin:0;padding:0}
-html{scroll-behavior:smooth}
-body{background:var(--bg);color:var(--text);font-family:var(--sans);line-height:1.7;overflow-x:hidden}
-img{display:block;max-width:100%}
-button,a{font:inherit}
-a{color:inherit;text-decoration:none}
-.container{width:min(1120px,calc(100% - 32px));margin:auto}
-section{padding:88px 0}
-h1,h2,h3{font-family:var(--serif);font-weight:500;line-height:1.08}
-h2{font-size:clamp(42px,6vw,68px);text-align:center;margin-bottom:46px}
-h3{font-size:34px}
-/* INTRO */
-.intro{padding-top:42px}
-.intro-grid{display:grid;grid-template-columns:minmax(280px,.85fr) minmax(0,1.15fr);gap:64px;align-items:start}
-.intro-photo img{width:100%;height:min(680px,78vh);object-fit:cover;object-position:center;border-radius:3px}
-.intro-text{font-size:17px;color:var(--muted);padding-top:8px}
-.intro-text p{margin-bottom:24px}
-/* HOW */
-.work{background:#fff}
-.work-list{max-width:900px;margin:auto}
-.work-item{padding:34px 0;border-top:1px solid var(--line)}
-.work-item:last-child{border-bottom:1px solid var(--line)}
-.work-item h3{margin-bottom:14px}
-.work-item p{font-size:16px;color:var(--muted)}
-/* SERVICES */
-.services-grid{display:grid;grid-template-columns:repeat(3,1fr);gap:18px;align-items:stretch}
-.service-card{background:#fff;border:1px solid var(--line);padding:30px;display:flex;flex-direction:column;min-height:100%}
-.service-card h3{margin-bottom:20px}
-.service-card p,.service-card li{color:var(--muted);font-size:14px}
-.service-card p{margin-bottom:17px}
-.service-card ul{padding-left:19px;margin:4px 0 16px}
-.service-card li{margin-bottom:10px}
-.service-meta{margin-top:auto;padding-top:18px}
-.service-meta p{margin:0 0 8px}
-.price{font-family:var(--serif);font-size:34px;color:var(--blue);margin-bottom:20px}
-.book-btn{width:100%;border:0;background:var(--blue);color:#fff;padding:15px 20px;border-radius:999px;cursor:pointer;transition:.2s}
-.book-btn:hover{background:var(--dark);transform:translateY(-2px)}
-.mom-card{grid-column:1/-1;background:transparent;border:1px solid var(--blue);padding:34px 36px;margin-top:2px}
-.mom-card .mom-title{font-family:var(--serif);font-size:25px;margin-bottom:6px}
-.mom-card h3{font-size:42px;margin-bottom:20px}
-/* HOW TO BOOK */
-.booking{background:#fff}
-.booking-list{max-width:900px;margin:auto}
-.booking-item{display:grid;grid-template-columns:62px 1fr;gap:20px;padding:27px 0;border-top:1px solid var(--line)}
-.booking-item:last-of-type{border-bottom:1px solid var(--line)}
-.booking-num{font-family:var(--serif);font-size:40px;line-height:1}
-.booking-item h3{font-size:30px;margin-bottom:10px}
-.booking-item p{font-size:15px;color:var(--muted)}
-.booking .book-wrap{max-width:900px;margin:32px auto 0}
-/* REVIEWS */
-.reviews-carousel{position:relative;max-width:760px;margin:auto}
-.review-window{overflow:hidden;border:1px solid var(--line);background:#fff}
-.review-track{display:flex;transition:transform .35s ease}
-.review-slide{min-width:100%;padding:10px}
-.review-slide img{width:100%;height:min(700px,78vh);object-fit:contain;background:#fff}
-.review-controls{display:flex;justify-content:center;align-items:center;gap:18px;margin-top:18px}
-.review-arrow{width:44px;height:44px;border:1px solid var(--line);border-radius:50%;background:#fff;color:var(--blue);cursor:pointer;font-size:22px}
-.review-dots{display:flex;gap:7px}
-.review-dot{width:7px;height:7px;border-radius:50%;background:var(--line)}
-.review-dot.active{background:var(--blue)}
-/* FAQ */
-.faq{max-width:900px;margin:auto}
-.faq-item{border-top:1px solid var(--line)}
-.faq-item:last-child{border-bottom:1px solid var(--line)}
-.faq-question{width:100%;padding:25px 0;background:none;border:0;color:var(--blue);text-align:left;display:flex;justify-content:space-between;align-items:center;gap:20px;cursor:pointer;font-family:var(--serif);font-size:28px}
-.faq-icon{font-family:var(--sans);font-size:22px;transition:transform .25s ease;flex:none}
-.faq-answer{max-height:0;overflow:hidden;transition:max-height .35s ease;color:var(--muted);font-size:15px}
-.faq-answer-inner{padding:0 48px 25px 0}
-.faq-item.active .faq-icon{transform:rotate(45deg)}
-.faq-contact{max-width:900px;margin:34px auto 0}
-/* MODAL */
-.modal{position:fixed;inset:0;background:rgba(26,45,66,.65);display:none;align-items:center;justify-content:center;padding:18px;z-index:1000}
-.modal.active{display:flex}
-.modal-box{width:min(430px,100%);background:#fff;border:1px solid var(--line);padding:34px 26px 28px;position:relative;text-align:center;border-radius:18px}
-.modal-close{position:absolute;right:14px;top:8px;border:0;background:none;color:var(--blue);font-size:30px;cursor:pointer}
-.modal-box h3{font-size:38px;margin-bottom:6px}
-.modal-phone{font-family:var(--serif);font-size:28px;margin-bottom:24px}
-.messenger-grid{display:grid;grid-template-columns:1fr 1fr;gap:12px}
-.messenger{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:10px;min-height:120px;border:1px solid var(--line);border-radius:14px;background:var(--bg);color:var(--blue);cursor:pointer;transition:.2s}
-.messenger:hover{transform:translateY(-2px);background:var(--soft)}
-.messenger-icon{width:54px;height:54px;display:grid;place-items:center;border-radius:50%;background:#fff;border:1px solid var(--line)}
-.messenger-label{font-size:13px;font-weight:600}
-.max-mark{font-size:15px;font-weight:700;letter-spacing:-.04em}
-/* MOBILE */
-@media(max-width:900px){
-section{padding:68px 0}
-.container{width:min(100% - 28px,700px)}
-.intro{padding-top:24px}
-.intro-grid{grid-template-columns:1fr;gap:28px}
-.intro-photo{order:1}.intro-text{order:2}
-.intro-photo img{height:auto;max-height:none;aspect-ratio:4/5;object-fit:cover}
-.intro-text{font-size:16px}
-.services-grid{grid-template-columns:1fr}
-.mom-card{grid-column:auto;padding:28px 22px}
-.booking-item{grid-template-columns:46px 1fr;gap:12px}
-.booking-num{font-size:34px}
-.booking-item h3{font-size:27px}
-.review-slide img{height:auto;max-height:75vh;min-height:300px}
-.faq-question{font-size:24px;padding:21px 0}
-.faq-answer-inner{padding-right:8px}
-}
-@media(max-width:560px){
-h2{font-size:42px;margin-bottom:34px}
-h3{font-size:30px}
-.service-card{padding:24px 20px}
-.mom-card h3{font-size:35px}
-.messenger-grid{grid-template-columns:1fr 1fr}
-.modal-box{padding:32px 18px 22px}
-}
-</style>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Алёна Пескова — практикующий астролог</title>
+  <meta name="description" content="Алёна Пескова — практикующий астролог. Ведическая астрология как инструмент самопознания.">
+  <meta name="theme-color" content="#eef5fc">
+
+  <link rel="preconnect" href="https://fonts.googleapis.com">
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+  <link href="https://fonts.googleapis.com/css2?family=Cormorant+Garamond:wght@500;600;700&family=Montserrat:wght@400;500;600&display=swap" rel="stylesheet">
+
+  <style>
+    :root {
+      --bg: #eef5fc;
+      --bg-soft: #f7faff;
+      --white: #ffffff;
+      --blue: #2f649d;
+      --blue-dark: #244f7e;
+      --blue-light: #9bb8d5;
+      --text: #526d8c;
+      --line: rgba(47,100,157,.16);
+      --shadow: 0 16px 45px rgba(38,79,124,.10);
+      --radius: 24px;
+    }
+
+    * { box-sizing: border-box; }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      margin: 0;
+      background: var(--bg);
+      color: var(--text);
+      font-family: "Montserrat", Arial, sans-serif;
+      line-height: 1.75;
+      overflow-x: hidden;
+    }
+
+    img {
+      max-width: 100%;
+      display: block;
+    }
+
+    a {
+      color: inherit;
+      text-decoration: none;
+    }
+
+    button {
+      font: inherit;
+    }
+
+    .container {
+      width: min(1120px, calc(100% - 40px));
+      margin: 0 auto;
+    }
+
+    /* Decorative background */
+    body::before,
+    body::after {
+      content: "";
+      position: fixed;
+      pointer-events: none;
+      border: 1px solid rgba(47,100,157,.12);
+      border-radius: 50%;
+      z-index: -1;
+    }
+
+    body::before {
+      width: 620px;
+      height: 620px;
+      top: -300px;
+      right: -180px;
+    }
+
+    body::after {
+      width: 500px;
+      height: 500px;
+      top: 260px;
+      left: -300px;
+    }
+
+    /* Header */
+    .site-header {
+      position: fixed;
+      z-index: 1000;
+      top: 0;
+      left: 0;
+      width: 100%;
+      background: rgba(238,245,252,.72);
+      border-bottom: 1px solid rgba(47,100,157,.10);
+      backdrop-filter: blur(14px);
+      -webkit-backdrop-filter: blur(14px);
+    }
+
+    .header-inner {
+      min-height: 82px;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 24px;
+    }
+
+    .brand {
+      font-family: "Cormorant Garamond", serif;
+      font-size: 34px;
+      font-weight: 600;
+      color: var(--blue);
+      white-space: nowrap;
+    }
+
+    .header-nav {
+      display: flex;
+      align-items: center;
+      gap: 22px;
+      font-size: 13px;
+    }
+
+    .header-nav a {
+      transition: opacity .2s ease;
+    }
+
+    .header-nav a:hover {
+      opacity: .65;
+    }
+
+    .primary-btn {
+      border: 0;
+      border-radius: 999px;
+      padding: 15px 26px;
+      background: var(--blue);
+      color: #fff;
+      cursor: pointer;
+      transition: transform .2s ease, background .2s ease;
+      box-shadow: 0 8px 20px rgba(47,100,157,.18);
+    }
+
+    .primary-btn:hover {
+      transform: translateY(-2px);
+      background: var(--blue-dark);
+    }
+
+    /* Hero */
+    .hero {
+      padding: 150px 0 90px;
+      min-height: 760px;
+      display: flex;
+      align-items: center;
+    }
+
+    .hero-grid {
+      display: grid;
+      grid-template-columns: .9fr 1.1fr;
+      gap: 80px;
+      align-items: center;
+    }
+
+    .hero-photo {
+      min-height: 520px;
+      border-radius: 28px;
+      overflow: hidden;
+      background: #e6eef7;
+      box-shadow: var(--shadow);
+    }
+
+    .hero-photo img {
+      width: 100%;
+      height: 100%;
+      min-height: 520px;
+      object-fit: cover;
+    }
+
+    .eyebrow {
+      display: inline-block;
+      margin-bottom: 22px;
+      padding: 9px 18px;
+      background: rgba(255,255,255,.72);
+      color: var(--blue);
+      font-size: 12px;
+      letter-spacing: .18em;
+      text-transform: uppercase;
+    }
+
+    h1, h2, h3 {
+      font-family: "Cormorant Garamond", serif;
+      font-weight: 600;
+      color: var(--blue);
+      line-height: 1.05;
+      margin-top: 0;
+    }
+
+    h1 {
+      font-size: clamp(58px, 7vw, 92px);
+      margin-bottom: 28px;
+    }
+
+    .hero-text {
+      font-size: 18px;
+      max-width: 650px;
+    }
+
+    /* Sections */
+    section {
+      padding: 100px 0;
+      scroll-margin-top: 90px;
+    }
+
+    .section-title {
+      text-align: center;
+      font-size: clamp(46px, 6vw, 70px);
+      margin-bottom: 58px;
+    }
+
+    .intro {
+      max-width: 900px;
+      margin: 0 auto;
+      font-size: 18px;
+    }
+
+    .intro p {
+      margin: 0 0 24px;
+    }
+
+    /* How I work */
+    .work-list {
+      display: grid;
+      gap: 22px;
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .work-card {
+      background: rgba(255,255,255,.62);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 34px 38px;
+    }
+
+    .work-card h3 {
+      font-size: 34px;
+      margin-bottom: 12px;
+    }
+
+    .work-card p {
+      margin: 0;
+    }
+
+    /* Services */
+    .services-grid {
+      display: grid;
+      grid-template-columns: repeat(3, 1fr);
+      gap: 24px;
+      align-items: stretch;
+    }
+
+    .service-card {
+      position: relative;
+      background: rgba(255,255,255,.82);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 34px 28px;
+      box-shadow: 0 10px 35px rgba(38,79,124,.06);
+      display: flex;
+      flex-direction: column;
+    }
+
+    .service-card.hit {
+      border: 2px solid var(--blue);
+    }
+
+    .hit-badge {
+      position: absolute;
+      top: 18px;
+      right: 18px;
+      background: var(--blue);
+      color: #fff;
+      border-radius: 999px;
+      padding: 6px 13px;
+      font-size: 11px;
+      letter-spacing: .12em;
+      text-transform: uppercase;
+    }
+
+    .service-card h3 {
+      font-size: 38px;
+      padding-right: 45px;
+      margin-bottom: 16px;
+    }
+
+    .service-card p {
+      margin: 0 0 18px;
+    }
+
+    .service-card ul {
+      margin: 4px 0 20px;
+      padding-left: 20px;
+    }
+
+    .service-card li {
+      margin-bottom: 10px;
+    }
+
+    .service-meta {
+      margin-top: auto;
+      padding-top: 20px;
+      border-top: 1px solid var(--line);
+    }
+
+    .price {
+      font-family: "Cormorant Garamond", serif;
+      color: var(--blue);
+      font-size: 34px;
+      font-weight: 600;
+      margin-bottom: 18px;
+    }
+
+    .service-btn {
+      width: 100%;
+      border: 0;
+      border-radius: 999px;
+      background: var(--blue);
+      color: #fff;
+      padding: 14px 20px;
+      cursor: pointer;
+    }
+
+    .service-btn:hover {
+      background: var(--blue-dark);
+    }
+
+    .kids-card {
+      max-width: 850px;
+      margin: 30px auto 0;
+      background: rgba(255,255,255,.72);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 40px;
+      box-shadow: var(--shadow);
+    }
+
+    .kids-card h3 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .kids-card h4 {
+      color: var(--blue);
+      font-family: "Cormorant Garamond", serif;
+      font-size: 30px;
+      margin: 0 0 16px;
+    }
+
+    /* How to book */
+    .steps {
+      max-width: 900px;
+      margin: 0 auto 45px;
+      display: grid;
+      gap: 22px;
+    }
+
+    .step {
+      background: rgba(255,255,255,.65);
+      border: 1px solid var(--line);
+      border-radius: var(--radius);
+      padding: 28px 34px;
+    }
+
+    .step h3 {
+      font-size: 34px;
+      margin-bottom: 8px;
+    }
+
+    .step p {
+      margin: 0;
+    }
+
+    .center-btn {
+      display: block;
+      margin: 0 auto;
+    }
+
+    /* Reviews */
+    .reviews-wrap {
+      position: relative;
+    }
+
+    .reviews-track {
+      display: flex;
+      gap: 18px;
+      overflow-x: auto;
+      scroll-snap-type: x mandatory;
+      padding: 8px 2px 20px;
+      scrollbar-width: thin;
+    }
+
+    .review-card {
+      flex: 0 0 min(360px, 82vw);
+      scroll-snap-align: start;
+      background: #fff;
+      border: 1px solid var(--line);
+      border-radius: 20px;
+      padding: 12px;
+      min-height: 280px;
+      display: flex;
+      align-items: center;
+      justify-content: center;
+    }
+
+    .review-card img {
+      width: 100%;
+      height: 100%;
+      max-height: 600px;
+      object-fit: contain;
+      border-radius: 14px;
+    }
+
+    .review-placeholder {
+      text-align: center;
+      padding: 40px 20px;
+      color: var(--blue-light);
+    }
+
+    /* FAQ */
+    .faq {
+      max-width: 900px;
+      margin: 0 auto;
+    }
+
+    .faq-item {
+      border-bottom: 1px solid var(--line);
+    }
+
+    .faq-question {
+      width: 100%;
+      display: flex;
+      align-items: center;
+      justify-content: space-between;
+      gap: 20px;
+      text-align: left;
+      background: transparent;
+      border: 0;
+      padding: 24px 0;
+      color: var(--blue);
+      cursor: pointer;
+      font-family: "Cormorant Garamond", serif;
+      font-size: 28px;
+      font-weight: 600;
+    }
+
+    .faq-icon {
+      flex: 0 0 auto;
+      font-family: Arial, sans-serif;
+      font-size: 24px;
+      font-weight: 400;
+      transition: transform .25s ease;
+    }
+
+    .faq-answer {
+      max-height: 0;
+      overflow: hidden;
+      transition: max-height .35s ease, padding .35s ease;
+      padding: 0;
+    }
+
+    .faq-item.open .faq-answer {
+      max-height: 700px;
+      padding: 0 0 24px;
+    }
+
+    .faq-item.open .faq-icon {
+      transform: rotate(45deg);
+    }
+
+    .contact-bottom {
+      margin-top: 55px;
+      text-align: center;
+    }
+
+    /* Contact modal */
+    .modal {
+      position: fixed;
+      inset: 0;
+      z-index: 2000;
+      display: none;
+      align-items: center;
+      justify-content: center;
+      padding: 20px;
+      background: rgba(28,52,76,.45);
+      backdrop-filter: blur(7px);
+      -webkit-backdrop-filter: blur(7px);
+    }
+
+    .modal.show {
+      display: flex;
+    }
+
+    .modal-box {
+      width: min(440px, 100%);
+      position: relative;
+      background: #fff;
+      border-radius: 28px;
+      padding: 34px;
+      box-shadow: 0 25px 80px rgba(20,50,80,.25);
+      text-align: center;
+    }
+
+    .modal-box h3 {
+      font-size: 42px;
+      margin-bottom: 10px;
+    }
+
+    .modal-box p {
+      margin: 0 0 25px;
+    }
+
+    .modal-close {
+      position: absolute;
+      top: 12px;
+      right: 16px;
+      border: 0;
+      background: transparent;
+      color: var(--blue);
+      font-size: 30px;
+      cursor: pointer;
+    }
+
+    .messengers {
+      display: grid;
+      gap: 12px;
+    }
+
+    .messenger {
+      display: flex;
+      align-items: center;
+      justify-content: center;
+      gap: 12px;
+      border-radius: 16px;
+      padding: 15px 20px;
+      background: var(--bg);
+      color: var(--blue);
+      font-weight: 600;
+      transition: transform .2s ease, background .2s ease;
+    }
+
+    .messenger:hover {
+      transform: translateY(-2px);
+      background: #e3eef9;
+    }
+
+    .messenger-icon {
+      width: 28px;
+      height: 28px;
+      border-radius: 50%;
+      display: inline-flex;
+      align-items: center;
+      justify-content: center;
+      background: var(--blue);
+      color: #fff;
+      font-size: 14px;
+      font-weight: 700;
+    }
+
+    /* Footer */
+    footer {
+      padding: 45px 0;
+      border-top: 1px solid var(--line);
+      text-align: center;
+      font-size: 13px;
+    }
+
+    /* Mobile */
+    @media (max-width: 900px) {
+      .container {
+        width: min(100% - 30px, 700px);
+      }
+
+      .header-inner {
+        min-height: 70px;
+      }
+
+      .brand {
+        font-size: 27px;
+      }
+
+      .header-nav {
+        display: none;
+      }
+
+      .header-inner .primary-btn {
+        padding: 11px 18px;
+        font-size: 13px;
+      }
+
+      .hero {
+        padding-top: 115px;
+        min-height: auto;
+      }
+
+      .hero-grid {
+        grid-template-columns: 1fr;
+        gap: 35px;
+      }
+
+      .hero-photo {
+        min-height: 420px;
+        order: 1;
+      }
+
+      .hero-photo img {
+        min-height: 420px;
+      }
+
+      .hero-copy {
+        order: 2;
+      }
+
+      h1 {
+        font-size: clamp(48px, 13vw, 72px);
+      }
+
+      .hero-text {
+        font-size: 16px;
+      }
+
+      section {
+        padding: 75px 0;
+      }
+
+      .services-grid {
+        grid-template-columns: 1fr;
+      }
+
+      .service-card {
+        padding: 30px 24px;
+      }
+
+      .kids-card {
+        padding: 28px 22px;
+      }
+    }
+
+    @media (max-width: 600px) {
+      .container {
+        width: calc(100% - 28px);
+      }
+
+      .site-header {
+        background: rgba(238,245,252,.76);
+      }
+
+      .brand {
+        font-size: 25px;
+      }
+
+      .header-inner .primary-btn {
+        padding: 10px 15px;
+      }
+
+      .hero {
+        padding: 100px 0 55px;
+      }
+
+      .hero-photo,
+      .hero-photo img {
+        min-height: 360px;
+      }
+
+      .eyebrow {
+        font-size: 10px;
+        letter-spacing: .13em;
+      }
+
+      .section-title {
+        font-size: 48px;
+        margin-bottom: 35px;
+      }
+
+      .intro {
+        font-size: 16px;
+      }
+
+      .work-card {
+        padding: 25px 22px;
+      }
+
+      .work-card h3,
+      .step h3 {
+        font-size: 30px;
+      }
+
+      .service-card h3 {
+        font-size: 35px;
+      }
+
+      .kids-card h3 {
+        font-size: 36px;
+      }
+
+      .kids-card h4 {
+        font-size: 28px;
+      }
+
+      .faq-question {
+        font-size: 24px;
+        padding: 21px 0;
+      }
+
+      .modal-box {
+        padding: 30px 22px;
+      }
+    }
+  </style>
 </head>
+
 <body>
 
-<!-- 1. ЗНАКОМСТВО: заголовок намеренно не выводится -->
-<section class="intro" id="intro">
-  <div class="container intro-grid">
-    <div class="intro-photo">
-      <img src="https://astrolog-peskova.vercel.app/images/alena-main.jpg" alt="Алёна Пескова">
+  <header class="site-header">
+    <div class="container header-inner">
+      <a class="brand" href="#top">Алёна Пескова</a>
+      <nav class="header-nav">
+        <a href="#about">Обо мне</a>
+        <a href="#work">Как я работаю</a>
+        <a href="#services">Мои услуги</a>
+        <a href="#reviews">Отзывы</a>
+        <a href="#faq">FAQ</a>
+      </nav>
+      <button class="primary-btn js-contact">Записаться</button>
     </div>
-    <div class="intro-text">
-      <p>Меня зовут Алёна, я практикующий астролог.</p>
-      <p>В своей работе я использую ведическую астрологию как инструмент самопознания — чтобы помочь человеку лучше понять свою природу, увидеть сильные стороны, таланты и возможные точки роста.</p>
-      <p>Мы не ищем в карте готовых ответов о том, каким будет ваше будущее.</p>
-      <p>Мы смотрим на вас — ваши особенности, отношения, профессиональную реализацию, финансовый потенциал и текущий жизненный период, чтобы вы могли лучше понять себя и принимать решения, опираясь на свое истинное я.</p>
-      <p>Натальная карта не решает за вас. Она помогает увидеть больше.</p>
-    </div>
-  </div>
-</section>
+  </header>
 
-<!-- 2. КАК Я РАБОТАЮ -->
-<section class="work" id="work">
-  <div class="container">
-    <h2>Как я работаю</h2>
-    <div class="work-list">
-      <article class="work-item">
-        <h3>Акцент на практику</h3>
-        <p>Я не просто даю вам описание положения планет в вашей карте, а обязательно прописываю - как их можно использовать или гармонизировать в повседневной жизни.</p>
-        <p>Мне важно дать конкретные инструменты, которые позволят вам улучшить качество жизни.</p>
-      </article>
-      <article class="work-item">
-        <h3>Не снимая ответственность</h3>
-        <p>Я не говорю, что вас ждёт и каким обязательно должно быть ваше будущее. Натальная карта показывает тенденции, возможности и потенциал, а решения и ответственность за них остаются за вами.</p>
-      </article>
-      <article class="work-item">
-        <h3>С опорой на ваши сильные стороны и ресурсы</h3>
-        <p>Моя задача — помочь Вам увидеть свой собственный потенциал и подсветить, как можно начать гармонично его реализовывать уже сейчас, что этому способствует, а над чем можно поработать.</p>
-      </article>
-      <article class="work-item">
-        <h3>Бережно и честно</h3>
-        <p>Я не использую категоричные формулировки и не строю работу на страхе. Даже сложные положения карты можно рассматривать как задачи, с которыми можно научиться работать.</p>
-        <p>После разбора вы будете видеть новые возможности для роста, а не ограничения.</p>
-      </article>
-    </div>
-  </div>
-</section>
+  <main id="top">
 
-<!-- 3. МОИ УСЛУГИ -->
-<section id="services">
-  <div class="container">
-    <h2>Мои услуги</h2>
-    <div class="services-grid">
-      <article class="service-card">
-        <div>
-          <h3>Экспресс-диагностика</h3>
-          <p>Идеальный вариант для тех, кто не знает точного времени рождения или хочет узнать только самое важное.</p>
-          <p>Вы узнаете какие планеты и положения в вашей карте ослаблены, а какие наоборот очень сильны. Как это влияет на вашу жизнь и как с этим работать.</p>
-          <p>В результате вы получите список гармонизирующих действий для каждого положения, которые позволят значительно улучшить несколько основных сфер жизни.</p>
+    <!-- ЗНАКОМСТВО -->
+    <section class="hero" id="about">
+      <div class="container hero-grid">
+        <div class="hero-photo">
+          <!-- Положите фотографию в папку images и назовите alena.jpg -->
+          <img src="https://astrolog-peskova.vercel.app/images/alena-main.jpg" alt="Алёна Пескова — практикующий астролог"
+               onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/alena-main.jpg';}else{this.style.display='none';this.parentElement.style.background='linear-gradient(135deg,#e4edf7,#f8fbff)';}">
         </div>
-        <div class="service-meta">
-          <p>Срок изготовления до 3-х дней.</p>
-          <div class="price">1900 рублей</div>
-          <button class="book-btn" type="button" data-book>Записаться</button>
-        </div>
-      </article>
 
-      <article class="service-card">
-        <div>
-          <h3>Ваша Натальная карта</h3>
-          <p>Оптимальный вариант, который включает подробный разбор всех сфер жизни и практические рекомендации для их улучшения.</p>
+        <div class="hero-copy">
+          <div class="eyebrow">Ведическая астрология</div>
+          <h1>Натальная карта как инструмент самопознания</h1>
+          <div class="hero-text">
+            <p>Меня зовут Алёна, я практикующий астролог.</p>
+
+            <p>В своей работе я использую ведическую астрологию как инструмент самопознания — чтобы помочь человеку лучше понять свою природу, увидеть сильные стороны, таланты и возможные точки роста.</p>
+
+            <p>Мы не ищем в карте готовых ответов о том, каким будет ваше будущее.</p>
+
+            <p>Мы смотрим на вас — ваши особенности, отношения, профессиональную реализацию, финансовый потенциал и текущий жизненный период, чтобы вы могли лучше понять себя и принимать решения, опираясь на свое истинное я.</p>
+
+            <p>Натальная карта не решает за вас. Она помогает увидеть больше.</p>
+          </div>
+        </div>
+      </div>
+    </section>
+
+    <!-- КАК Я РАБОТАЮ -->
+    <section id="work">
+      <div class="container">
+        <h2 class="section-title">Как я работаю</h2>
+
+        <div class="work-list">
+          <article class="work-card">
+            <h3>Акцент на практику</h3>
+            <p>Я не просто даю вам описание положения планет в вашей карте, а обязательно прописываю - как их можно использовать или гармонизировать в повседневной жизни.</p>
+            <p>Мне важно дать конкретные инструменты, которые позволят вам улучшить качество жизни.</p>
+          </article>
+
+          <article class="work-card">
+            <h3>Не снимая ответственность</h3>
+            <p>Я не говорю, что вас ждёт и каким обязательно должно быть ваше будущее. Натальная карта показывает тенденции, возможности и потенциал, а решения и ответственность за них остаются за вами.</p>
+          </article>
+
+          <article class="work-card">
+            <h3>С опорой на ваши сильные стороны и ресурсы</h3>
+            <p>Моя задача — помочь Вам увидеть свой собственный потенциал и подсветить, как можно начать гармонично его реализовывать уже сейчас, что этому способствует, а над чем можно поработать.</p>
+          </article>
+
+          <article class="work-card">
+            <h3>Бережно и честно</h3>
+            <p>Я не использую категоричные формулировки и не строю работу на страхе. Даже сложные положения карты можно рассматривать как задачи, с которыми можно научиться работать.</p>
+            <p>После разбора вы будете видеть новые возможности для роста, а не ограничения.</p>
+          </article>
+        </div>
+      </div>
+    </section>
+
+    <!-- МОИ УСЛУГИ -->
+    <section id="services">
+      <div class="container">
+        <h2 class="section-title">Мои услуги</h2>
+
+        <div class="services-grid">
+
+          <article class="service-card">
+            <h3>Экспресс-диагностика</h3>
+            <p>Идеальный вариант для тех, кто не знает точного времени рождения или хочет узнать только самое важное.</p>
+            <p>Вы узнаете какие планеты и положения в вашей карте ослаблены, а какие наоборот очень сильны. Как это влияет на вашу жизнь и как с этим работать.</p>
+            <p>В результате вы получите список гармонизирующих действий для каждого положения, которые позволят значительно улучшить несколько основных сфер жизни.</p>
+            <p>Срок изготовления до 3-х дней.</p>
+
+            <div class="service-meta">
+              <div class="price">1900 рублей</div>
+              <button class="service-btn js-contact">Записаться</button>
+            </div>
+          </article>
+
+          <article class="service-card hit">
+            <span class="hit-badge">HIT</span>
+            <h3>Натальная карта</h3>
+            <p>Оптимальный вариант, который включает подробный разбор всех сфер жизни и практические рекомендации для их улучшения.</p>
+
+            <p>Вы узнаете:</p>
+            <ul>
+              <li>Особенности характера, психики, сильные стороны и таланты</li>
+              <li>Сферы для профессиональной реализации и качества, на которые стоит сделать упор</li>
+              <li>Все о деньгах и финансах в вашей карте, инструменты для увеличения доходов и накоплений</li>
+              <li>Как построить гармоничные и крепкие отношения: какие партнеры подходят, что для вас самое главное в отношениях, над чем нужно работать</li>
+              <li>Ваш кармический портрет: предназначение, задачи, зоны роста</li>
+            </ul>
+
+            <p>Срок изготовления до 20-ти дней</p>
+
+            <div class="service-meta">
+              <div class="price">4900 рублей</div>
+              <button class="service-btn js-contact">Записаться</button>
+            </div>
+          </article>
+
+          <article class="service-card">
+            <h3>Натальная карта Премиум</h3>
+            <p>Для тех, кто привык получать максимум и хочет узнать о себе все.</p>
+
+            <p>Вы получите:</p>
+            <ul>
+              <li>Все, что входит в услугу «Натальная карта»</li>
+              <li>Персональный анализ ваших периодов и транзитов: точный инструмент для прогнозирования событий, понимания текущих жизненных циклов и выбора наилучшего времени для важных шагов</li>
+              <li>Любые три темы по вашему желанию дополнительно: крупные покупки, недвижимость, дети, переезды и т.д.</li>
+              <li>Сила планет: узнаете, какие планеты особенно сильны в вашем гороскопе и как можно использовать их ресурс в жизни</li>
+            </ul>
+
+            <p>Срок изготовления до 10 дней</p>
+
+            <div class="service-meta">
+              <div class="price">7900 рублей</div>
+              <button class="service-btn js-contact">Записаться</button>
+            </div>
+          </article>
+
+        </div>
+
+        <article class="kids-card">
+          <h3>Для заботливых мам</h3>
+          <h4>Детская натальная карта</h4>
+
+          <p>Позволит вам лучше понимать своего ребенка, проявлять заботу согласно его природе, с легкостью находить общий язык и оказывать поддержку в развитии вашего малыша. Подходит для деток до 12 лет.</p>
+
           <p>Вы узнаете:</p>
           <ul>
-            <li>Особенности характера, психики, сильные стороны и таланты</li>
-            <li>Сферы для профессиональной реализации и качества, на которые стоит сделать упор</li>
-            <li>Все о деньгах и финансах в вашей карте, инструменты для увеличения доходов и накоплений</li>
-            <li>Как построить гармоничные и крепкие отношения: какие партнеры подходят, что для вас самое главное в отношениях, над чем нужно работать</li>
-            <li>Ваш кармический портрет: предназначение, задачи, зоны роста</li>
+            <li>Особенности характера и темперамента</li>
+            <li>Вектор развития – врожденные таланты и в какие сферы лучше направлять энергию</li>
+            <li>Ключ к учебе – как устроено его восприятия и что нужно для лучшего усвоения информации</li>
+            <li>Эмоции и психика – как работают его чувства, на что обращать внимание при взаимодействии</li>
           </ul>
-        </div>
-        <div class="service-meta">
-          <p>Срок изготовления до 20-ти дней</p>
-          <div class="price">4900 рублей</div>
-          <button class="book-btn" type="button" data-book>Записаться</button>
-        </div>
-      </article>
 
-      <article class="service-card">
-        <div>
-          <h3>Ваша Натальная карта Премиум</h3>
-          <p>Для тех, кто привык получать максимум и хочет узнать о себе все.</p>
-          <p>Вы получите:</p>
-          <ul>
-            <li>Все, что входит в услугу «Ваша Натальная карта»</li>
-            <li>+ Персональный анализ ваших периодов и транзитов: точный инструмент для прогнозирования событий, понимания текущих жизненных циклов и выбора наилучшего времени для важных шагов</li>
-            <li>+ Любые три темы по вашему желанию дополнительно: крупные покупки, недвижимость, дети, переезды и т.д.</li>
-            <li>+ Сила планет: узнаете, какие планеты особенно сильны в вашем гороскопе и как можно использовать их ресурс в жизни</li>
-          </ul>
-        </div>
-        <div class="service-meta">
-          <p>Срок изготовления до 10 дней</p>
-          <div class="price">7900 рублей</div>
-          <button class="book-btn" type="button" data-book>Записаться</button>
-        </div>
-      </article>
-
-      <article class="service-card mom-card">
-        <div class="mom-title">Для заботливых мам</div>
-        <h3>Детская натальная карта</h3>
-        <p>Позволит вам лучше понимать своего ребенка, проявлять заботу согласно его природе, с легкостью находить общий язык и оказывать поддержку в развитии вашего малыша. Подходит для деток до 12 лет.</p>
-        <p>Вы узнаете:</p>
-        <ul>
-          <li>Особенности характера и темперамента</li>
-          <li>Вектор развития – врожденные таланты и в какие сферы лучше направлять энергию</li>
-          <li>Ключ к учебе – как устроено его восприятия и что нужно для лучшего усвоения информации</li>
-          <li>Эмоции и психика – как работают его чувства, на что обращать внимание при взаимодействии</li>
-        </ul>
-        <div class="service-meta">
           <p>Срок изготовления до 20 дней</p>
+
           <div class="price">2900 рублей</div>
-          <button class="book-btn" type="button" data-book>Записаться</button>
+          <button class="service-btn js-contact">Записаться</button>
+        </article>
+      </div>
+    </section>
+
+    <!-- КАК ЗАПИСАТЬСЯ -->
+    <section id="booking">
+      <div class="container">
+        <h2 class="section-title">Как записаться</h2>
+
+        <div class="steps">
+          <article class="step">
+            <h3>1. Напишите мне</h3>
+            <p>Можете написать в любом удобном мессенджере, я готова ответить на ваши вопросы и подробно обсудить запрос перед началом работы</p>
+          </article>
+
+          <article class="step">
+            <h3>2. Отправьте данные рождения</h3>
+            <p>Дата, максимально точное время и город рождения (для экспресс-диагностики точное время не обязательно)</p>
+          </article>
+
+          <article class="step">
+            <h3>3. Внесите предоплату</h3>
+            <p>После согласования деталей производится 100% предоплата, и я начинаю работу над вашей картой.</p>
+          </article>
+
+          <article class="step">
+            <h3>4. Получите разбор</h3>
+            <p>Вы получите PDF-файл и аудиоразбор, объем зависит от выбранной услуги. После этого в течении 30 дней можете задать любой вопрос относительно вашей карты.</p>
+          </article>
         </div>
-      </article>
-    </div>
-  </div>
-</section>
 
-<!-- 4. КАК ЗАПИСАТЬСЯ -->
-<section class="booking" id="booking">
-  <div class="container">
-    <h2>Как записаться</h2>
-    <div class="booking-list">
-      <article class="booking-item">
-        <div class="booking-num">1.</div>
-        <div><h3>Напишите мне</h3><p>Можете написать в любом удобном мессенджере, я готова ответить на ваши вопросы и подробно обсудить запрос перед началом работы</p></div>
-      </article>
-      <article class="booking-item">
-        <div class="booking-num">2.</div>
-        <div><h3>Отправьте данные рождения</h3><p>Дата, максимально точное время и город рождения (для экспресс-диагностики точное время не обязательно)</p></div>
-      </article>
-      <article class="booking-item">
-        <div class="booking-num">3.</div>
-        <div><h3>Внесите предоплату</h3><p>После согласования деталей производится 100% предоплата, и я начинаю работу над вашей картой.</p></div>
-      </article>
-      <article class="booking-item">
-        <div class="booking-num">4.</div>
-        <div><h3>Получите разбор</h3><p>Вы получите PDF-файл и аудиоразбор, объем зависит от выбранной услуги. После этого в течении 30 дней можете задать любой вопрос относительно вашей карты.</p></div>
-      </article>
-      <div class="book-wrap"><button class="book-btn" type="button" data-book>Записаться</button></div>
-    </div>
-  </div>
-</section>
+        <button class="primary-btn center-btn js-contact">Записаться</button>
+      </div>
+    </section>
 
-<!-- 5. ОТЗЫВЫ -->
-<section id="reviews">
-  <div class="container">
-    <h2>Отзывы моих клиентов</h2>
-    <div class="reviews-carousel">
-      <div class="review-window">
-        <div class="review-track" id="reviewTrack">
-          <div class="review-slide"><img src="https://astrolog-peskova.vercel.app/images/review-1.jpg" alt="Отзыв клиента"></div>
-          <div class="review-slide"><img src="https://astrolog-peskova.vercel.app/images/review-2.jpg" alt="Отзыв клиента"></div>
-          <div class="review-slide"><img src="https://astrolog-peskova.vercel.app/images/review-3.jpg" alt="Отзыв клиента"></div>
-          <div class="review-slide"><img src="https://astrolog-peskova.vercel.app/images/review-4.jpg" alt="Отзыв клиента"></div>
-          <div class="review-slide"><img src="https://astrolog-peskova.vercel.app/images/review-5.jpg" alt="Отзыв клиента"></div>
+    <!-- ОТЗЫВЫ -->
+    <section id="reviews">
+      <div class="container">
+        <h2 class="section-title">Отзывы моих клиентов</h2>
+
+        <div class="reviews-wrap">
+          <div class="reviews-track">
+
+            <!--
+              Чтобы добавить отзывы, положите скриншоты в папку images
+              и замените/добавьте блоки ниже.
+              Например: images/review-1.jpg, images/review-2.jpg
+            -->
+
+            <div class="review-card">
+              <img src="https://astrolog-peskova.vercel.app/images/review-1.jpg" alt="Отзыв клиента"
+                   onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-1.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
+            </div>
+
+            <div class="review-card">
+              <img src="https://astrolog-peskova.vercel.app/images/review-2.jpg" alt="Отзыв клиента"
+                   onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-2.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
+            </div>
+
+            <div class="review-card">
+              <img src="https://astrolog-peskova.vercel.app/images/review-3.jpg" alt="Отзыв клиента"
+                   onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-3.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
+            </div>
+
+            <div class="review-card">
+              <img src="https://astrolog-peskova.vercel.app/images/review-4.jpg" alt="Отзыв клиента"
+                   onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-4.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
+            </div>
+
+            <div class="review-card">
+              <img src="https://astrolog-peskova.vercel.app/images/review-5.jpg" alt="Отзыв клиента"
+                   onerror="if(!this.dataset.fallback){this.dataset.fallback='1';this.src='/review-5.jpg';}else{this.parentElement.innerHTML='<div class=&quot;review-placeholder&quot;>Не удалось загрузить отзыв</div>';}">
+            </div>
+
+          </div>
         </div>
       </div>
-      <div class="review-controls">
-        <button class="review-arrow" id="reviewPrev" type="button" aria-label="Предыдущий отзыв">‹</button>
-        <div class="review-dots" id="reviewDots"></div>
-        <button class="review-arrow" id="reviewNext" type="button" aria-label="Следующий отзыв">›</button>
+    </section>
+
+    <!-- FAQ -->
+    <section id="faq">
+      <div class="container">
+        <h2 class="section-title">Часто задаваемые вопросы</h2>
+
+        <div class="faq">
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Нужно ли знать точное время рождения?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Чем точнее известно время рождения, тем точнее можно провести анализ натальной карты. Я готова взять в работу карту, если известно хотя бы примерное время рождения — в пределах ±30 минут. Если время неизвестно совсем, лучше провести экспресс-диагностику.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Что нужно предоставить для разбора?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Мне понадобятся дата рождения, максимально точное время и город рождения. Также перед началом разбора вы сможете рассказать о запросах или сферах жизни, которым хотите уделить особое внимание.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>В каком формате я получу разбор?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Вы получите подробный PDF-файл и аудиоразбор в удобном для вас мессенджере: Telegram, WhatsApp или MAX. Объем и продолжительность зависят от выбранной услуги.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Подойдёт ли мне разбор, если я сейчас просто запуталась и не знаю, какой у меня запрос?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Да. Не обязательно приходить с чётко сформулированным вопросом. Иногда человеку как раз хочется сначала увидеть общую картину: лучше понять свои сильные стороны, особенности характера, профессиональные склонности и текущий период. В процессе разбора многие вопросы становятся понятнее сами по себе.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Можно ли задать вопросы после получения разбора?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Да. После получения разбора вы можете задавать мне уточняющие вопросы в течение 30 дней. Мне важно, чтобы после знакомства с картой у вас осталось понимание материала, а не ощущение, что вы получили файл и остались с ним один на один.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Можно ли попросить разобрать конкретную сферу жизни?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Да. В основном разборе мы рассматриваем личные качества и сильные стороны, профессиональную реализацию, отношения, финансовую сферу, кармические задачи и текущий период. При необходимости можно дополнительно включить анализ других сфер — например, детей, недвижимости, переезда, отношений с родителями и других тем. Дополнительные вопросы обсуждаются индивидуально.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>А если я вообще ничего не знаю об астрологии?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Это совершенно не проблема. Вам не нужно заранее разбираться в планетах, домах или специальных терминах. Я стараюсь объяснять материал простым и понятным языком и связывать астрологические показатели с реальными жизненными ситуациями.</p>
+            </div>
+          </article>
+
+          <article class="faq-item">
+            <button class="faq-question">
+              <span>Натальная карта точно расскажет, что со мной произойдёт?</span>
+              <span class="faq-icon">+</span>
+            </button>
+            <div class="faq-answer">
+              <p>Я не воспринимаю натальную карту как сценарий, в котором заранее прописано ваше будущее. В работе мне гораздо важнее показать ваши особенности, возможные задачи и тенденции, чтобы вы могли лучше понимать себя и самостоятельно принимать решения.</p>
+            </div>
+          </article>
+
+        </div>
+
+        <div class="contact-bottom">
+          <button class="primary-btn js-contact">Связаться со мной</button>
+        </div>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    Алёна Пескова
+  </footer>
+
+  <!-- Окно выбора мессенджера -->
+  <div class="modal" id="contactModal" aria-hidden="true">
+    <div class="modal-box">
+      <button class="modal-close" id="modalClose" aria-label="Закрыть">×</button>
+      <h3>Напишите мне</h3>
+      <p>Выберите удобный мессенджер</p>
+
+      <div class="messengers">
+        <a class="messenger" href="https://t.me/+79235022642" target="_blank" rel="noopener">
+          <span class="messenger-icon">T</span>
+          Telegram
+        </a>
+
+        <a class="messenger" href="https://max.ru/89235022642" target="_blank" rel="noopener">
+          <span class="messenger-icon">M</span>
+          MAX
+        </a>
+
+        <a class="messenger" href="tel:+79235022642">
+          <span class="messenger-icon">☎</span>
+          8 923 502-26-42
+        </a>
       </div>
     </div>
   </div>
-</section>
 
-<!-- 6. FAQ -->
-<section id="faq">
-  <div class="container">
-    <h2>Часто задаваемые вопросы</h2>
-    <div class="faq">
-      <article class="faq-item"><button class="faq-question" type="button">Нужно ли знать точное время рождения?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Чем точнее известно время рождения, тем точнее можно провести анализ натальной карты. Я готова взять в работу карту, если известно хотя бы примерное время рождения — в пределах ±30 минут. Если время неизвестно совсем, лучше провести экспресс-диагностику.</div></div></article>
-      <article class="faq-item"><button class="faq-question" type="button">Что нужно предоставить для разбора?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Мне понадобятся дата рождения, максимально точное время и город рождения. Также перед началом разбора вы сможете рассказать о запросах или сферах жизни, которым хотите уделить особое внимание.</div></div></article>
-      <article class="faq-item"><button class="faq-question" type="button">В каком формате я получу разбор?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Вы получите подробный PDF-файл и аудиоразбор в удобном для вас мессенджере: Telegram, WhatsApp или MAX. Объем и продолжительность зависят от выбранной услуги.</div></div></article>
-      <article class="faq-item"><button class="faq-question" type="button">Подойдёт ли мне разбор, если я сейчас просто запуталась и не знаю, какой у меня запрос?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Да. Не обязательно приходить с чётко сформулированным вопросом. Иногда человеку как раз хочется сначала увидеть общую картину: лучше понять свои сильные стороны, особенности характера, профессиональные склонности и текущий период. В процессе разбора многие вопросы становятся понятнее сами по себе.</div></div></article>
-      <article class="faq-item"><button class="faq-question" type="button">Можно ли задать вопросы после получения разбора?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Да. После получения разбора вы можете задавать мне уточняющие вопросы в течение 30 дней. Мне важно, чтобы после знакомства с картой у вас осталось понимание материала, а не ощущение, что вы получили файл и остались с ним один на один.</div></div></article>
-      <article class="faq-item"><button class="faq-question" type="button">Можно ли попросить разобрать конкретную сферу жизни?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Да. В основном разборе мы рассматриваем личные качества и сильные стороны, профессиональную реализацию, отношения, финансовую сферу, кармические задачи и текущий период. При необходимости можно дополнительно включить анализ других сфер — например, детей, недвижимости, переезда, отношений с родителями и других тем. Дополнительные вопросы обсуждаются индивидуально.</div></div></article>
-      <article class="faq-item"><button class="faq-question" type="button">А если я вообще ничего не знаю об астрологии?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Это совершенно не проблема. Вам не нужно заранее разбираться в планетах, домах или специальных терминах. Я стараюсь объяснять материал простым и понятным языком и связывать астрологические показатели с реальными жизненными ситуациями.</div></div></article>
-      <article class="faq-item"><button class="faq-question" type="button">Натальная карта точно расскажет, что со мной произойдёт?<span class="faq-icon">+</span></button><div class="faq-answer"><div class="faq-answer-inner">Я не воспринимаю натальную карту как сценарий, в котором заранее прописано ваше будущее. В работе мне гораздо важнее показать ваши особенности, возможные задачи и тенденции, чтобы вы могли лучше понимать себя и самостоятельно принимать решения.</div></div></article>
-    </div>
-    <div class="faq-contact"><button class="book-btn" type="button" data-book>Связаться со мной</button></div>
-  </div>
-</section>
+  <script>
+    // Открытие окна выбора мессенджера
+    const modal = document.getElementById("contactModal");
+    const modalClose = document.getElementById("modalClose");
 
-<!-- MODAL: открывается по любой кнопке «Записаться» / «Связаться со мной» -->
-<div class="modal" id="contactModal" aria-hidden="true">
-  <div class="modal-box" role="dialog" aria-modal="true" aria-label="Связаться со мной">
-    <button class="modal-close" id="modalClose" type="button" aria-label="Закрыть">×</button>
-    <h3>Связаться со мной</h3>
-    <div class="modal-phone">8 923 502-26-42</div>
-    <div class="messenger-grid">
-      <a class="messenger" href="https://t.me/+79235022642" target="_blank" rel="noopener">
-        <span class="messenger-icon" aria-hidden="true">
-          <svg width="28" height="28" viewBox="0 0 24 24" fill="none"><path d="M21.5 3.8 18.2 20c-.25 1.15-.92 1.43-1.87.9l-5.16-3.8-2.49 2.4c-.28.28-.51.51-1.05.51l.38-5.25 9.56-8.64c.42-.38-.09-.59-.65-.21L5.1 13.02.02 11.43c-1.1-.34-1.12-1.1.23-1.62L20.1 2.2c.92-.34 1.72.21 1.4 1.6Z" fill="currentColor"/></svg>
-        </span>
-        <span class="messenger-label">Telegram</span>
-      </a>
-      <a class="messenger" href="https://max.ru/" target="_blank" rel="noopener">
-        <span class="messenger-icon" aria-hidden="true"><span class="max-mark">MAX</span></span>
-        <span class="messenger-label">MAX</span>
-      </a>
-    </div>
-  </div>
-</div>
-
-<script>
-// FAQ accordion
-const faqItems=document.querySelectorAll('.faq-item');
-faqItems.forEach(item=>{
-  const btn=item.querySelector('.faq-question');
-  const answer=item.querySelector('.faq-answer');
-  btn.addEventListener('click',()=>{
-    const active=item.classList.contains('active');
-    faqItems.forEach(other=>{
-      other.classList.remove('active');
-      other.querySelector('.faq-answer').style.maxHeight=null;
+    document.querySelectorAll(".js-contact").forEach(button => {
+      button.addEventListener("click", () => {
+        modal.classList.add("show");
+        modal.setAttribute("aria-hidden", "false");
+        document.body.style.overflow = "hidden";
+      });
     });
-    if(!active){
-      item.classList.add('active');
-      answer.style.maxHeight=answer.scrollHeight+'px';
+
+    function closeModal() {
+      modal.classList.remove("show");
+      modal.setAttribute("aria-hidden", "true");
+      document.body.style.overflow = "";
     }
-  });
-});
 
-// Contact modal
-const modal=document.getElementById('contactModal');
-const modalClose=document.getElementById('modalClose');
-function openContact(){modal.classList.add('active');modal.setAttribute('aria-hidden','false');document.body.style.overflow='hidden'}
-function closeContact(){modal.classList.remove('active');modal.setAttribute('aria-hidden','true');document.body.style.overflow=''}
-document.querySelectorAll('[data-book]').forEach(btn=>btn.addEventListener('click',openContact));
-modalClose.addEventListener('click',closeContact);
-modal.addEventListener('click',e=>{if(e.target===modal)closeContact()});
-document.addEventListener('keydown',e=>{if(e.key==='Escape')closeContact()});
+    modalClose.addEventListener("click", closeModal);
 
-// Reviews carousel
-const track=document.getElementById('reviewTrack');
-const slides=[...document.querySelectorAll('.review-slide')];
-const dots=document.getElementById('reviewDots');
-let current=0;
-slides.forEach((_,i)=>{
-  const dot=document.createElement('span');dot.className='review-dot'+(i===0?' active':'');dots.appendChild(dot);
-});
-const dotEls=[...dots.children];
-function showReview(index){current=(index+slides.length)%slides.length;track.style.transform=`translateX(-${current*100}%)`;dotEls.forEach((d,i)=>d.classList.toggle('active',i===current))}
-document.getElementById('reviewPrev').addEventListener('click',()=>showReview(current-1));
-document.getElementById('reviewNext').addEventListener('click',()=>showReview(current+1));
-let touchStartX=0;
-track.addEventListener('touchstart',e=>{touchStartX=e.changedTouches[0].clientX},{passive:true});
-track.addEventListener('touchend',e=>{const dx=e.changedTouches[0].clientX-touchStartX;if(Math.abs(dx)>45)showReview(current+(dx<0?1:-1))},{passive:true});
-</script>
+    modal.addEventListener("click", (event) => {
+      if (event.target === modal) {
+        closeModal();
+      }
+    });
+
+    document.addEventListener("keydown", (event) => {
+      if (event.key === "Escape") {
+        closeModal();
+      }
+    });
+
+    // FAQ — раскрывающиеся вопросы
+    document.querySelectorAll(".faq-question").forEach(button => {
+      button.addEventListener("click", () => {
+        const item = button.closest(".faq-item");
+        const isOpen = item.classList.contains("open");
+
+        document.querySelectorAll(".faq-item").forEach(other => {
+          other.classList.remove("open");
+        });
+
+        if (!isOpen) {
+          item.classList.add("open");
+        }
+      });
+    });
+  </script>
+
 </body>
 </html>
